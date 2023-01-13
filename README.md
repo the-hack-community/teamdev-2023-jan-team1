@@ -1,11 +1,10 @@
 # teamdev-2023-jan-team1
 
-## frontend
+##frontend
 
 - next.js
 - typescript
 
-## backend
+##backend
 
 - rails(api)
-- mysql
