@@ -11,6 +11,9 @@
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@mantine/core": "^5.10.0",
+    "@mantine/hooks": "^5.10.0",
     "@next/font": "13.1.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
@@ -25,6 +28,7 @@
   "devDependencies": {
     "eslint-config-prettier": "8.6.0",
     "eslint-import-resolver-webpack": "^0.13.2",
+    "modern-css-reset": "^1.4.0",
     "prettier": "2.8.2"
   }
 }
