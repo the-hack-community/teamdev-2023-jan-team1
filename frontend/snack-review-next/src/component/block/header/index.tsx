@@ -28,6 +28,9 @@ import logo from "@/img/logo/logo.svg";
 /* ヘッダーのデザインです
 TODO: mantineのドキュメントに記載してあった箇所をコピペしてるだけなので、不要な箇所あると思います*/
 const useStyles = createStyles((theme) => ({
+  heder_content: {
+    background: "#F3F4F6",
+  },
   link: {
     display: "flex",
     alignItems: "center",
@@ -106,7 +109,7 @@ const HeaderBlock = () => {
   return (
     <>
       <Box pb={30}>
-        <Header height={80} px="md">
+        <Header height={80} px="md" className={classes.heder_content}>
           <Group position="apart" sx={{ height: "100%" }}>
             <Image
               src="logo.svg"
@@ -147,10 +150,17 @@ const HeaderBlock = () => {
               color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
             />
 
-            <Divider
-              my="sm"
-              color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-            />
+            <Link href="/" className={classes.link}>
+              HOME
+            </Link>
+
+            {/* TODO: 下記の領域はログイン判定で出し分ける */}
+            <Link href="/" className={classes.link}>
+              HOMExxx
+            </Link>
+            <Link href="/" className={classes.link}>
+              HOMExxx
+            </Link>
 
             <Group position="center" grow pb="xl" px="md">
               <Button variant="default">Log in</Button>
