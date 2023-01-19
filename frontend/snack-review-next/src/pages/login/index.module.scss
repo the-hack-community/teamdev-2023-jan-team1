@@ -1,0 +1,25 @@
+.login_title_text {
+  text-align: center;
+  margin-top: 74px;
+  margin-bottom: 54px;
+  font-size: 16px;
+}
+.log_block {
+  //TODO: figmaは80px 103pxだけど、間延びして見えたので一旦50にしてます
+  margin: 50px 103px;
+  display: flex;
+  justify-content: center;
+}
+.signup_content {
+  margin-top: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-style: normal;
+  .signup_text {
+    color: #374151;
+  }
+  .signup_link_text {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+}
