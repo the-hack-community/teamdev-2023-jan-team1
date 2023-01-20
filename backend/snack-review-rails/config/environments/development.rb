@@ -64,7 +64,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
 
-  #add hosts
+  #add host
   config.hosts <<  ENV.fetch("HOST" ) 
 
 end
