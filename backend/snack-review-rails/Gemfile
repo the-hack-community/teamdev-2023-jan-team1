@@ -13,7 +13,7 @@ gem "mysql2", "~> 0.5"
 gem "puma", "~> 5.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem "jbuilder"
+gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -46,6 +46,30 @@ group :development do
   # gem "spring"
 end
 
+# .envを使う方はこちら
+gem "dotenv-rails" 
 
-gem 'dotenv-rails'
+# RSpec
+gem "rspec-rails" 
+
+# 最高のデバッグをあなたに
+gem "pry-rails" 
+
+# テストデータはお手の物
+gem "factory_bot_rails" 
+
+# リンター
+gem "rubocop" 
+
+# モデルにDB定義をコメントしてくれる
+gem "annotate" 
+
+# Railsのモデルを見てER図を作ってくれる
+gem "rails-erd" 
+
+# ページングといえばこれ
+gem "kaminari" 
+
+# 環境ごとの設定はここ
+gem "config" 
 
