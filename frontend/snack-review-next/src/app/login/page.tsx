@@ -1,12 +1,10 @@
 import React from "react";
-import EmailForm from "@/component/atoms/form/email";
-import PasswordForm from "@/component/atoms/form/password";
+import LoginComponent from "@/component/template/login/loginComponent";
+
 const Login = () => {
   return (
     <>
-      <div>LOGIN</div>
-      <EmailForm />
-      <PasswordForm />
+      <LoginComponent />
     </>
   );
 };
