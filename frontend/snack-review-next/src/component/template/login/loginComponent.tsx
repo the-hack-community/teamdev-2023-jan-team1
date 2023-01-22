@@ -9,7 +9,7 @@ import { Button } from "@/component/atoms/button/button";
 const LoginComponent = () => {
   return (
     <>
-      <div className="text-center mt-20">
+      <div className="flex items-center flex-col mt-20">
         <div className="flex justify-center">
           <Logo />
         </div>
