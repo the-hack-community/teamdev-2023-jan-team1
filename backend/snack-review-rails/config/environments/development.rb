@@ -68,3 +68,4 @@ Rails.application.configure do
   config.hosts <<  ENV.fetch("HOST" ) 
 
 end
+
