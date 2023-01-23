@@ -1,34 +1,32 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
+import { Button } from "@/component/atoms/button/button";
 import EmailForm from "@/component/atoms/form/email";
 import PasswordForm from "@/component/atoms/form/password";
 import Logo from "@/component/atoms/logo/logo";
-import { Button } from "@/component/atoms/button/button";
 
 const LoginComponent = () => {
   return (
-    <>
-      <div className="flex items-center flex-col mt-20">
-        <div className="flex justify-center">
-          <Logo />
-        </div>
-        <div className="mt-16 mb-14">
-          <p>ログインする</p>
-        </div>
-        <EmailForm />
-        <PasswordForm />
-        <Button text="ログイン" />
-        <div className="mt-8">
-          <p>
-            新規登録は
-            <Link href={"/signup"} className="text-blue-700 ml-1">
-              こちら
-            </Link>
-          </p>
-        </div>
+    <div className="mt-20 flex flex-col items-center">
+      <div className="flex justify-center">
+        <Logo />
       </div>
-    </>
+      <div className="mt-16 mb-14">
+        <p>ログインする</p>
+      </div>
+      <EmailForm />
+      <PasswordForm />
+      <Button text="ログイン" />
+      <div className="mt-8">
+        <p>
+          新規登録は
+          <Link href="/signup" className="ml-1 text-blue-700">
+            こちら
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 };
 
