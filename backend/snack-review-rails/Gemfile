@@ -52,11 +52,10 @@ group :development do
   gem "rails-erd" 
 end
 
-
 gem "kaminari" 
 gem "config" 
 gem 'dotenv-rails'
 gem 'devise'
 gem 'devise_token_auth'
-
+gem 'ruby-graphviz'
 
