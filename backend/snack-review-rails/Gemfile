@@ -34,7 +34,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+ gem "rack-cors"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -44,32 +44,19 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "annotate"
+  gem "rspec-rails" 
+  gem "pry-rails"
+  gem "factory_bot_rails" 
+  gem "rubocop" 
+  gem "rails-erd" 
 end
 
-# .envを使う方はこちら
-gem "dotenv-rails" 
 
-# RSpec
-gem "rspec-rails" 
-
-# 最高のデバッグをあなたに
-gem "pry-rails" 
-
-# テストデータはお手の物
-gem "factory_bot_rails" 
-
-# リンター
-gem "rubocop" 
-
-# モデルにDB定義をコメントしてくれる
-gem "annotate" 
-
-# Railsのモデルを見てER図を作ってくれる
-gem "rails-erd" 
-
-# ページングといえばこれ
 gem "kaminari" 
-
-# 環境ごとの設定はここ
 gem "config" 
+gem 'dotenv-rails'
+gem 'devise'
+gem 'devise_token_auth'
+
 
