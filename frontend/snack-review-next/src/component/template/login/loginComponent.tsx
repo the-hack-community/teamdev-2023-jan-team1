@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 import { Button } from "@/component/atoms/button/button";
-import { EmailForm, PasswordForm } from "@/component/atoms/form/InputField";
+import { InputField } from "@/component/atoms/form/InputField";
 import { Logo } from "@/component/atoms/logo/logo";
 
-import { REQUEST_STATE } from "@/constants/InputField";
+import { EMAIL_FIELD, PASSWORD_FIELD } from "@/constants/InputField";
 
 export const LoginComponent = () => {
   return (
@@ -15,8 +15,13 @@ export const LoginComponent = () => {
       <div className="mt-16 mb-14">
         <p className="font-bold">ログインする</p>
       </div>
-      <EmailForm />
-      <PasswordForm />
+      <InputField label={EMAIL_FIELD.LABEL} inputId={EMAIL_FIELD.INPUT_ID} placeholder={EMAIL_FIELD.PLACEHOLDER} />
+      <InputField
+        label={PASSWORD_FIELD.LABEL}
+        inputId={PASSWORD_FIELD.INPUT_ID}
+        placeholder={PASSWORD_FIELD.PLACEHOLDER}
+      />
+
       <div className="mt-6">
         <Button text="ログイン" />
       </div>
