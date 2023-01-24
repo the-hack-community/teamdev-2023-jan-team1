@@ -4,6 +4,7 @@ import { Button } from "@/component/atoms/button/button";
 import { InputField } from "@/component/atoms/form/InputField";
 import { Logo } from "@/component/atoms/logo/logo";
 
+import { RED_COLOR } from "@/constants/Colr";
 import { EMAIL_FIELD, PASSWORD_FIELD } from "@/constants/InputField";
 
 export const LoginComponent = () => {
@@ -23,7 +24,7 @@ export const LoginComponent = () => {
       />
 
       <div className="mt-6">
-        <Button text="ログイン" />
+        <Button text="ログイン" color={RED_COLOR.BUTTON_COLOR} hoverColor={RED_COLOR.BUTTON_HOVER_COLOR} />
       </div>
       <div className="mt-8">
         <p className="font-bold">
