@@ -1,10 +1,9 @@
 import Link from "next/link";
 
-import { Button } from "@/component/atoms/button/button";
+import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { InputField } from "@/component/atoms/form/InputField";
 import { Logo } from "@/component/atoms/logo/logo";
 
-import { RED_COLOR } from "@/constants/Colr";
 import { EMAIL_FIELD, PASSWORD_FIELD } from "@/constants/InputField";
 
 export const LoginComponent = () => {
@@ -16,15 +15,11 @@ export const LoginComponent = () => {
       <div className="mt-16 mb-14">
         <p className="font-bold">ログインする</p>
       </div>
-      <InputField label={EMAIL_FIELD.LABEL} inputId={EMAIL_FIELD.INPUT_ID} placeholder={EMAIL_FIELD.PLACEHOLDER} />
-      <InputField
-        label={PASSWORD_FIELD.LABEL}
-        inputId={PASSWORD_FIELD.INPUT_ID}
-        placeholder={PASSWORD_FIELD.PLACEHOLDER}
-      />
+      <InputField {...EMAIL_FIELD} />
+      <InputField {...PASSWORD_FIELD} />
 
-      <div className="mt-6">
-        <Button text="ログイン" color={RED_COLOR.BUTTON_COLOR} hoverColor={RED_COLOR.BUTTON_HOVER_COLOR} />
+      <div className="w-full">
+        <CommonButton isPrimary>ログイン</CommonButton>
       </div>
       <div className="mt-8">
         <p className="font-bold">

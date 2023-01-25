@@ -1,13 +1,17 @@
+type InputKeyType = "id" | "label" | "placeholder" | "isRequired";
+
 // メールフォームの定数
 export const EMAIL_FIELD = {
-  LABEL: "メールアドレス",
-  INPUT_ID: "email",
-  PLACEHOLDER: "mail@example.com",
-};
+  label: "メールアドレス",
+  id: "email",
+  placeholder: "mail@example.com",
+  isRequired: true,
+} satisfies Record<InputKeyType, string | boolean>;
 
 // パスワードフォームの定数
 export const PASSWORD_FIELD = {
-  LABEL: "パスワード",
-  INPUT_ID: "password",
-  PLACEHOLDER: "your password",
-};
+  label: "パスワード",
+  id: "password",
+  placeholder: "your password",
+  isRequired: true,
+} satisfies Record<InputKeyType, string | boolean>;
