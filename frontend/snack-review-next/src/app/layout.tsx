@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import "../styles/globals.css";
 
-const RootLayout = ({ children }) => {
+const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ja">
       <head />

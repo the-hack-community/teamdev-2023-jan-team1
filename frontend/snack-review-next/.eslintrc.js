@@ -21,22 +21,19 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: [
-    "react",
-    "@typescript-eslint",
-    "tailwindcss",
-    "import",
-    "unused-imports",
-  ],
+  settings: {
+    settings: {
+      "import/resolver": "webpack",
+    },
+  },
+  plugins: ["react", "@typescript-eslint", "tailwindcss", "import", "unused-imports"],
   rules: {
     "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
     quotes: ["error", "double"],
     "func-style": ["error", "declaration", { allowArrowFunctions: true }],
     "no-console": ["error", { allow: ["warn", "info", "error"] }],
-    "react/function-component-definition": [
-      2,
-      { namedComponents: "arrow-function" },
-    ],
+    "react/function-component-definition": [2, { namedComponents: "arrow-function" }],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx", "tsx"] }],
     "unused-imports/no-unused-imports": "warn",
     "import/prefer-default-export": "off",
@@ -56,15 +53,7 @@ module.exports = {
     "import/order": [
       "error",
       {
-        groups: [
-          "builtin",
-          "external",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type",
-        ],
+        groups: ["builtin", "external", "parent", "sibling", "index", "object", "type"],
         pathGroups: [
           {
             pattern: "@alias/**",
