@@ -1,7 +1,7 @@
 import { Footer } from "@/component/template/footer/Footer";
 
 const Home = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
   return (
     <div>
       <p className="font-bold text-red-500">Hello Next.js 13</p>
