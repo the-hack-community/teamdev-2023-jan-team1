@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { HomeIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export const FooterNotLoggedIn = () => {
   return (

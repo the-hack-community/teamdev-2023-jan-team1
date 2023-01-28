@@ -1,11 +1,8 @@
-import Link from "next/link";
 import { HomeIcon, PlusIcon, FaceSmileIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
-type FooterLoggedInProps = {
-  userName?: string;
-};
-
-export const FooterLoggedIn = (props: FooterLoggedInProps) => {
+export const FooterLoggedIn = (props: { userName: string }) => {
+  const { userName } = props;
   return (
     <div className="h-full mx-4 flex justify-between items-center">
       <Link href="/" className="text-2xs text-center w-32">
@@ -18,7 +15,7 @@ export const FooterLoggedIn = (props: FooterLoggedInProps) => {
       </Link>
       <Link href="/account" className="text-2xs text-center w-32 text-ellipsis whitespace-nowrap overflow-hidden">
         <FaceSmileIcon className="h-8 w-8 mx-auto text-orange-400" />
-        {props.userName}
+        {userName}
       </Link>
     </div>
   );
