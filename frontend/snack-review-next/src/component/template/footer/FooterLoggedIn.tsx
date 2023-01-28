@@ -4,17 +4,17 @@ import Link from "next/link";
 export const FooterLoggedIn = (props: { userName: string }) => {
   const { userName } = props;
   return (
-    <div className="h-full mx-4 flex justify-between items-center">
-      <Link href="/" className="text-2xs text-center w-32">
-        <HomeIcon className="h-8 w-8 text-black mx-auto" />
+    <div className="mx-4 flex h-full items-center justify-between">
+      <Link href="/" className="text-2xs w-32 text-center">
+        <HomeIcon className="mx-auto h-8 w-8 text-black" />
         ホーム
       </Link>
-      <Link href="/share" className="text-2xs text-center w-32">
-        <PlusIcon className="h-8 w-8 text-black mx-auto" />
+      <Link href="/share" className="text-2xs w-32 text-center">
+        <PlusIcon className="mx-auto h-8 w-8 text-black" />
         投稿
       </Link>
-      <Link href="/account" className="text-2xs text-center w-32 text-ellipsis whitespace-nowrap overflow-hidden">
-        <FaceSmileIcon className="h-8 w-8 mx-auto text-orange-400" />
+      <Link href="/account" className="text-2xs w-32 overflow-hidden text-ellipsis whitespace-nowrap text-center">
+        <FaceSmileIcon className="mx-auto h-8 w-8 text-orange-400" />
         {userName}
       </Link>
     </div>
