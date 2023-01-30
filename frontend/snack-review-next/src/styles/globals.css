@@ -2,6 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.text-2xs {
-  font-size: 0.5rem;
-}
