@@ -12,7 +12,7 @@ export const CardInfo: FC<Props> = ({ title, categoryName, userName, shopsInform
     <>
       <h2 className="font-bold line-clamp-1">{title}</h2>
       <div className="flex items-center gap-2 overflow-hidden text-2xs text-gray-400">
-        <CategoryTag>{categoryName}</CategoryTag>
+        <CategoryTag categoryName={categoryName} />
         <div>
           <div className="flex items-center gap-1">
             <span>{date}</span>
