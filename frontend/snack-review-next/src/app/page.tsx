@@ -1,8 +1,8 @@
 import { articlesSchema } from "@/app/lib/zodSchema";
+import { CarouselIndicator } from "@/component/atoms/card/CarouselIndicator";
 import { Logo } from "@/component/atoms/logo/Logo";
 import { CardList } from "@/component/template/home/CardList";
 import { Carousel } from "@/component/template/home/Carousel";
-import { CarouselIndicator } from "@/component/template/home/CarouselIndicator";
 import { GET_ARTICLES } from "@/constants/endpoint";
 
 const getData = async () => {

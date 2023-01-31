@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CardInfo } from "./CardInfo";
+import { CardInfo } from "../../atoms/card/CardInfo";
 import type { ArticlesType } from "@/app/lib/zodSchema";
 import type { FC } from "react";
 

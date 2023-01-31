@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { CardInfo } from "./CardInfo";
 import type { ArticlesType } from "@/app/lib/zodSchema";
 import type { FC } from "react";
+import { CardInfo } from "@/component/atoms/card/CardInfo";
 
 type Props = {
   popularArticles: ArticlesType["popularArticles"];
