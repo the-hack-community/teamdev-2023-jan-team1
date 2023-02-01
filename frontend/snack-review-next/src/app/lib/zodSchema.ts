@@ -19,7 +19,7 @@ const articleSchema = z.object({
   url: z.string(),
   imageUrl: z.string(),
   userName: z.string(),
-  allowEdit_flag: z.boolean(),
+  allowEditFlag: z.boolean(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 });

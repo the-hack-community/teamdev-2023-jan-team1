@@ -11,7 +11,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1595144780677-6d0b5abbd089?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDF8fGNha2UlMjBzaG9wfGVufDB8fHx8MTY3NDc5NDczMw&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user1",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-15T17:52:04+09:00",
         "updatedAt": "2022-09-15T17:52:04+09:00"
       },
@@ -25,7 +25,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDN8fGNha2UlMjBzaG9wfGVufDB8fHx8MTY3NDc5NDczMw&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user2",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-16T17:52:04+09:00",
         "updatedAt": "2022-09-16T17:52:04+09:00"
       },
@@ -39,7 +39,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1622896784083-cc051313dbab?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDZ8fGNha2UlMjBzaG9wfGVufDB8fHx8MTY3NDc5NDczMw&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user3",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-17T17:52:04+09:00",
         "updatedAt": "2022-09-17T17:52:04+09:00"
       },
@@ -53,7 +53,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDh8fGNha2UlMjBzaG9wfGVufDB8fHx8MTY3NDc5NDczMw&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user4",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-18T17:52:04+09:00",
         "updatedAt": "2022-09-18T17:52:04+09:00"
       },
@@ -67,7 +67,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1625579437459-12c5f5762142?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDExfHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user5",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-19T17:52:04+09:00",
         "updatedAt": "2022-09-19T17:52:04+09:00"
       }
@@ -83,7 +83,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1621857426350-ddab819cf0cc?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDEyfHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user1",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-20T17:52:04+09:00",
         "updatedAt": "2022-09-20T17:52:04+09:00"
       },
@@ -97,7 +97,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1600002415506-dd06090d3480?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDE4fHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user2",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-21T17:52:04+09:00",
         "updatedAt": "2022-09-21T17:52:04+09:00"
       },
@@ -111,7 +111,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1576437957780-1f21b8bcdbde?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDIyfHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user3",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-22T17:52:04+09:00",
         "updatedAt": "2022-09-22T17:52:04+09:00"
       },
@@ -125,7 +125,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1600120429657-cbaa8d439551?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDI2fHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user1",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-23T17:52:04+09:00",
         "updatedAt": "2022-09-23T17:52:04+09:00"
       },
@@ -139,7 +139,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1546541866-706231a598d7?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDMxfHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3NTY&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user5",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-24T17:52:04+09:00",
         "updatedAt": "2022-09-24T17:52:04+09:00"
       },
@@ -153,7 +153,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1621857426350-ddab819cf0cc?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDEyfHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user1",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-20T17:52:04+09:00",
         "updatedAt": "2022-09-20T17:52:04+09:00"
       },
@@ -167,7 +167,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1600002415506-dd06090d3480?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDE4fHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user2",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-21T17:52:04+09:00",
         "updatedAt": "2022-09-21T17:52:04+09:00"
       },
@@ -181,7 +181,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1576437957780-1f21b8bcdbde?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDIyfHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user3",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-22T17:52:04+09:00",
         "updatedAt": "2022-09-22T17:52:04+09:00"
       },
@@ -195,7 +195,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1600120429657-cbaa8d439551?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDI2fHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3MzM&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user1",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-23T17:52:04+09:00",
         "updatedAt": "2022-09-23T17:52:04+09:00"
       },
@@ -209,7 +209,7 @@
         "url": "https://sample.com",
         "imageUrl": "https://images.unsplash.com/photo-1546541866-706231a598d7?crop=entropy&cs=tinysrgb&fm=jpg&ixid=Mnw3MjAxN3wwfDF8c2VhcmNofDMxfHxjYWtlJTIwc2hvcHxlbnwwfHx8fDE2NzQ3OTQ3NTY&ixlib=rb-4.0.3&q=80&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450",
         "userName": "user5",
-        "allowEdit_flag": false,
+        "allowEditFlag": false,
         "createdAt": "2022-09-24T17:52:04+09:00",
         "updatedAt": "2022-09-24T17:52:04+09:00"
       }
