@@ -21,10 +21,10 @@
 #
 #  fk_rails_...  (category_id => categories.id)
 #
-require "test_helper"
-
-class ArticleTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :article do
+    title { 'Test Aritcle' }
+    content { 'Test Content' }
+    category
+  end
 end
