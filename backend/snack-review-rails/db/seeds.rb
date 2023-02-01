@@ -7,11 +7,28 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Category.create!(
-  category_name: "sample-name1",
+  category_name: "焼き菓子",
   category_color: "bg-red-400"
 )
 
 Category.create!(
-  category_name: "sample-name2",
+  category_name: "ケーキ",
   category_color: "bg-blue-400"
 )
+
+Category.create!(
+  category_name: "チョコ",
+  category_color: "bg-green-400"
+)
+
+Category.create!(
+  category_name: "和菓子",
+  category_color: "bg-purple-400"
+)
+
+Category.create!(
+  category_name: "その他",
+  category_color: "bg-yellow-400"
+)
+
+
