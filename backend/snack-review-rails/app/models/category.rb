@@ -20,5 +20,5 @@ class Category < ApplicationRecord
   
   validates :category_name, presence: true, uniqueness: true
   validates :category_color, presence: true
-  has_many :articles
+  has_many :article
 end

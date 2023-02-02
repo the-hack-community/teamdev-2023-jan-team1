@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for "User", at: "auth"
       resources :articles, except: [:new, :edit]
       resources :categories, only: [:index]
+      resources :my_profiles, only: [:index]
     end
   end
 end
