@@ -1,8 +1,8 @@
 "use client";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import toast, { Toaster } from "react-hot-toast";
+import { CommonNotification } from "./CommonNotification";
 import type { ComponentProps, FC } from "react";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { ModalInfoField } from "@/component/atoms/card/ModalInfoField";
@@ -16,11 +16,9 @@ type Props = {
 export const ConfirmModal: FC<Props> = ({ title, isOpen, setIsOpen }) => {
   const handleClick: ComponentProps<"button">["onClick"] = (e) => {
     e.preventDefault();
-    toast("削除しました", {
-      duration: 5000,
-      position: "bottom-center",
-      className: "font-bold bg-green-100 border border-green-400 w-screen",
-      icon: <CheckCircleIcon className="h-6 text-green-400" />,
+    toast.custom((t) => <CommonNotification t={t} />, {
+      duration: 4000,
+      position: "top-center",
     });
     setIsOpen(false);
   };
