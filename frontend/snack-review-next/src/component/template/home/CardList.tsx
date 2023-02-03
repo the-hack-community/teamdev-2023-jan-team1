@@ -1,18 +1,19 @@
 import Image from "next/image";
-import { CardInfo } from "../../atoms/card/CardInfo";
-import type { ArticlesType } from "@/app/lib/zodSchema";
+import type { ArticlesArrayType } from "@/lib/zodSchema";
 import type { FC } from "react";
+import { CardInfo } from "@/component/atoms/card/CardInfo";
 
 type Props = {
-  newArticles: ArticlesType["newArticles"];
+  listTitle: string;
+  articles: ArticlesArrayType;
 };
 
-export const CardList: FC<Props> = ({ newArticles }) => {
+export const CardList: FC<Props> = ({ listTitle, articles }) => {
   return (
-    <div className="px-4">
-      <h2 className="mb-4 font-bold">Shop List</h2>
+    <>
+      <h2 className="mb-4 font-bold">{listTitle}</h2>
       <div className="flex flex-col gap-2">
-        {newArticles.map((article) => {
+        {articles.map((article) => {
           const { id, title, imageUrl } = article;
 
           return (
@@ -24,13 +25,13 @@ export const CardList: FC<Props> = ({ newArticles }) => {
                 alt={title}
                 className="h-28 w-28 shrink-0 rounded-l-xl object-cover"
               />
-              <div className="flex flex-col gap-1 p-2">
+              <div className="flex flex-col gap-2 p-2">
                 <CardInfo {...article} />
               </div>
             </div>
           );
         })}
       </div>
-    </div>
+    </>
   );
 };

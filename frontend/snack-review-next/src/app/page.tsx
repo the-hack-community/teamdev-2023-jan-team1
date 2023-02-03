@@ -1,18 +1,11 @@
-import { articlesSchema } from "@/app/lib/zodSchema";
 import { CarouselIndicator } from "@/component/atoms/card/CarouselIndicator";
 import { Logo } from "@/component/atoms/logo/Logo";
 import { CardList } from "@/component/template/home/CardList";
 import { Carousel } from "@/component/template/home/Carousel";
-import { GET_ARTICLES } from "@/constants/endpoint";
-
-const getData = async () => {
-  const res = await fetch(GET_ARTICLES, { cache: "no-cache" });
-  const data = await res.json();
-  return articlesSchema.parse(data);
-};
+import { getArticles } from "@/lib/getData";
 
 const Home = async () => {
-  const { newArticles, popularArticles } = await getData();
+  const { newArticles, popularArticles } = await getArticles();
 
   return (
     <div>
@@ -24,8 +17,9 @@ const Home = async () => {
         <Carousel popularArticles={popularArticles} />
         <CarouselIndicator popularArticles={popularArticles} />
       </div>
-
-      <CardList newArticles={newArticles} />
+      <div className="px-4">
+        <CardList listTitle="Shop List" articles={newArticles} />
+      </div>
     </div>
   );
 };

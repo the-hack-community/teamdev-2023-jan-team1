@@ -19,7 +19,9 @@ export const LoginComponent = () => {
         <InputField {...EMAIL_FIELD} />
         <InputField {...PASSWORD_FIELD} />
         <div className="mt-6">
-          <CommonButton isPrimary>ログイン</CommonButton>
+          <CommonButton isPrimary isFullWidth>
+            ログイン
+          </CommonButton>
         </div>
       </div>
       <div className="mt-8">
