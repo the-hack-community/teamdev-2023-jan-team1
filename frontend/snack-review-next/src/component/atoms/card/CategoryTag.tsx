@@ -1,5 +1,5 @@
 import cc from "classcat";
-import type { CategoryNameType } from "@/app/lib/zodSchema";
+import type { CategoryNameType } from "@/lib/zodSchema";
 import type { FC } from "react";
 
 type Props = {

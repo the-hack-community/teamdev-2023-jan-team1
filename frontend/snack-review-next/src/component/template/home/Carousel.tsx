@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ArticlesType } from "@/app/lib/zodSchema";
+import type { ArticlesType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { CardInfo } from "@/component/atoms/card/CardInfo";
 
@@ -18,6 +18,7 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
           <div className="carousel-item">
             <div className="relative">
               <Image
+                priority
                 src={imageUrl}
                 width={320}
                 height={208}

@@ -1,4 +1,4 @@
-import type { ArticlesType } from "@/app/lib/zodSchema";
+import type { ArticlesType } from "@/lib/zodSchema";
 import type { FC } from "react";
 
 type Props = {

@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// 記事スキーマ
 // FIXME: カテゴリ名が正式に決まったら変更する
 const categoryNameSchema = z.union([
   z.literal("焼き菓子"),
@@ -20,8 +21,8 @@ const articleSchema = z.object({
   imageUrl: z.string(),
   userName: z.string(),
   allowEditFlag: z.boolean(),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
 });
 
 const articleArraySchema = z.array(articleSchema);
@@ -33,4 +34,19 @@ export const articlesSchema = z.object({
 
 export type ArticlesType = z.infer<typeof articlesSchema>;
 export type ArticleType = z.infer<typeof articleSchema>;
+export type ArticlesArrayType = z.infer<typeof articleArraySchema>;
 export type CategoryNameType = z.infer<typeof categoryNameSchema>;
+
+// プロフィールスキーマ
+const userSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+});
+
+export const myProfileSchema = z.object({
+  user: userSchema,
+  articles: articleArraySchema,
+});
+
+export type MyProfileType = z.infer<typeof myProfileSchema>;
+export type UserType = z.infer<typeof userSchema>;
