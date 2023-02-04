@@ -9,7 +9,7 @@ type Props = {
 
 export const Carousel: FC<Props> = ({ popularArticles }) => {
   return (
-    <div className="carousel-center carousel h-64 max-w-xl space-x-6">
+    <div className="carousel-center carousel h-72 max-w-xl space-x-6">
       <div className="pl-10" />
       {popularArticles.map((article) => {
         const { title, imageUrl } = article;
@@ -19,13 +19,14 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
             <div className="relative">
               <Image
                 priority
-                src={imageUrl}
+                src={imageUrl || "/no-image-carousel.png"}
                 width={320}
                 height={208}
                 alt={title}
                 className="h-52 w-80 rounded-3xl object-cover"
               />
-              <div className="absolute top-32 mx-6 flex flex-col gap-1 rounded-3xl bg-white p-4 shadow-md">
+
+              <div className="absolute top-32 mx-6 flex flex-col gap-1 rounded-3xl bg-white px-4 py-3 shadow-md">
                 <CardInfo {...article} />
               </div>
             </div>
