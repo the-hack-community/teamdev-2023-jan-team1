@@ -7,9 +7,16 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
+    @article = Article.new(article_params)
+    if @article.save
+      head :created
+    else
+      render json: @article.errors, status: :unprocessable_entity
+    end
   end
 
   def update
+    
   end
 
   def destroy
@@ -19,5 +26,10 @@ class Api::V1::ArticlesController < ApplicationController
     else
       render json: @article.errors, status: :unprocessable_entity
     end
+  end
+
+  private
+  def user_params
+    params.require(:article).permit(:content, :shops_information, :title, :url, :category_id).merge(image_url: @article.get_image_url)
   end
 end
