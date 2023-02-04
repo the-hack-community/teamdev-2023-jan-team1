@@ -4,6 +4,7 @@ import { Logo } from "@/component/atoms/logo/Logo";
 import { CardList } from "@/component/template/home/CardList";
 import { Carousel } from "@/component/template/home/Carousel";
 import { GET_ARTICLES } from "@/constants/endpoint";
+import { Footer } from "@/component/template/footer/Footer";
 
 const getData = async () => {
   const res = await fetch(GET_ARTICLES, { cache: "no-cache" });
@@ -13,6 +14,7 @@ const getData = async () => {
 
 const Home = async () => {
   const { newArticles, popularArticles } = await getData();
+  const isLoggedIn = true;
 
   return (
     <div>
@@ -26,6 +28,7 @@ const Home = async () => {
       </div>
 
       <CardList newArticles={newArticles} />
+      <Footer isLoggedIn={isLoggedIn} userName="シェアがしユーザーで名前の長いひと" />
     </div>
   );
 };
