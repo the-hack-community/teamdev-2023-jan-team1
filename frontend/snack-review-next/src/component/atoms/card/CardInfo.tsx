@@ -10,7 +10,15 @@ import { formatDate } from "@/lib/helpers";
 
 type Props = Pick<
   ArticleType,
-  "title" | "categoryName" | "userName" | "shopsInformation" | "content" | "updatedAt" | "allowEditFlag" | "url"
+  | "title"
+  | "categoryName"
+  | "userName"
+  | "shopsInformation"
+  | "content"
+  | "updatedAt"
+  | "allowEditFlag"
+  | "url"
+  | "categoryColor"
 >;
 
 export const CardInfo: FC<Props> = ({
@@ -21,6 +29,7 @@ export const CardInfo: FC<Props> = ({
   content,
   updatedAt,
   allowEditFlag,
+  categoryColor,
 }) => {
   // FIXME: isLoggedInはグローバルな値から取得ように変更
   const isLoggedIn = true;
@@ -30,9 +39,9 @@ export const CardInfo: FC<Props> = ({
 
   return (
     <>
-      <h2 className="font-bold line-clamp-1">{title}</h2>
+      <h2 className="mt-2 font-bold line-clamp-1">{title}</h2>
       <div className="flex items-center gap-2 overflow-hidden text-2xs text-gray-400">
-        <CategoryTag categoryName={categoryName} />
+        <CategoryTag categoryName={categoryName} categoryColor={categoryColor} />
         <div>
           <div className="flex items-center gap-1">
             <span>{date}</span>
