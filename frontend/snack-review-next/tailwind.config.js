@@ -4,9 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        "2xs": "0.5rem",
+        "3xs": ".6rem",
+        "2xs": ".5rem",
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
 };

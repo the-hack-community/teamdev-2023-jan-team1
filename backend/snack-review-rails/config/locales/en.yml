@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    messages:
+      too_short: "too-short:%{count}"
+      too_long: "too-long:%{count}"
+      inclusion: "no-inclusion"
+      invalid: "invalid-format"
+      blank: "required"
+      taken: "taken"
