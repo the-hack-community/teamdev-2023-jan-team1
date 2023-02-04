@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_21_132005) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_28_015947) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_132005) do
     t.text "shops_information"
     t.text "url"
     t.text "image_url"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_articles_on_category_id"
   end
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -59,4 +61,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_132005) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "articles", "categories"
 end
