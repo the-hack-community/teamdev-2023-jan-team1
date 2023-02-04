@@ -55,4 +55,15 @@ RSpec.describe Article, type: :model do
       expect(article.errors[:category]).to eq(['must exist'])
     }
   end
+
+  describe "OGP画像のURL取得のテスト" do
+    it('OGP画像が取得できる') {
+      article = build(:article, url: 'http://www.rikuro.co.jp/')
+      expect(article.get_image_url(article.url)).to eq('http://www.rikuro.co.jp/img/ogpimage.jpg')
+    } 
+    it('OGP画像が取得できない') {
+      article = build(:article, url: 'http://abehiroshi.la.coocan.jp/')
+      expect(article.get_image_url(article.url)).to eq(nil)
+    } 
+  end
 end

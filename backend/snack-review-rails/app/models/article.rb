@@ -22,20 +22,28 @@
 #
 #  fk_rails_...  (category_id => categories.id)
 #
+require 'open_graph_reader'
 class Article < ApplicationRecord
   # discardのモジュールを読み込む
   include Discard::Model
+  # デフォルトでは削除されていないものだけを検索するようにする
+  default_scope -> { kept }
+
+  def get_image_url(url)
+    meta_info = OpenGraphReader.fetch(url)
+    if (meta_info.respond_to?(:og, true) && meta_info.og.respond_to?(:image, true) && meta_info.og.image.respond_to?(:url)) 
+      return meta_info.og.image.url
+    else
+      return nil
+    end
+  end
+  
+
 
   validates :title, presence: true
   validates :content, presence: true
   belongs_to :category
 
-  # # 論理削除
-  # def destroy
-  #   discard
-  # end
 
-  # デフォルトでは削除されていないものだけを検索するようにする
-  default_scope -> { kept }
   
 end
