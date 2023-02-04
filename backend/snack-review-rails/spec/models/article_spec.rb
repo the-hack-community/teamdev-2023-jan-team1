@@ -15,7 +15,8 @@
 #
 # Indexes
 #
-#  index_articles_on_category_id  (category_id)
+#  index_articles_on_category_id   (category_id)
+#  index_articles_on_discarded_at  (discarded_at)
 #
 # Foreign Keys
 #

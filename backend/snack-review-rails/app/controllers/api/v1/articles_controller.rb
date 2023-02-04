@@ -13,5 +13,11 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def destroy
+    @article = Article.find(params[:id])
+    if @article.discard
+      head :no_content
+    else
+      render json: @article.errors, status: :unprocessable_entity
+    end
   end
 end
