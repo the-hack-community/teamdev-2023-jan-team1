@@ -18,11 +18,6 @@ export const handleSignUp = (props: Props) => {
 
   const generalApiInterface = axios.create({
     baseURL: BASEURL,
-    headers: {
-      uid: Cookies.get("uid"),
-      client: Cookies.get("client"),
-      access_token: Cookies.get("access-token"),
-    },
   });
 
   generalApiInterface
