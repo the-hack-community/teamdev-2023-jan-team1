@@ -1,5 +1,6 @@
 require 'open_graph_reader'
 class Api::V1::ArticlesController < ApplicationController
+  before_action :alert_authorize, only: ['create', 'update', 'destroy']
   def index
     @popular_articles = Article.all
     @new_articles = Article.order(updated_at: :desc)
@@ -53,5 +54,8 @@ class Api::V1::ArticlesController < ApplicationController
     else
       return nil
     end
+  end
+  def alert_authorize
+    head :unauthorized unless api_v1_user_signed_in?
   end
 end
