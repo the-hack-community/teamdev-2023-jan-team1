@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_28_015947) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_05_020200) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_015947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category_color", null: false
+    t.index ["category_name"], name: "index_categories_on_category_name", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

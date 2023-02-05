@@ -8,6 +8,10 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
+# Indexes
+#
+#  index_categories_on_category_name  (category_name) UNIQUE
+#
 require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
