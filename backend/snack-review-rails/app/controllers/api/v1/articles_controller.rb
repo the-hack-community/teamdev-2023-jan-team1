@@ -1,3 +1,4 @@
+require 'open_graph_reader'
 class Api::V1::ArticlesController < ApplicationController
   def index
     @popular_articles = Article.all
@@ -12,6 +13,9 @@ class Api::V1::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    
+    binding.pry
+    
     if @article.save
       head :created
     else
@@ -39,7 +43,15 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:article).permit(:content, :shops_information, :title, :url, :category_id).merge(image_url: @article.get_image_url, user_id: current_api_v1_user.id)
+  def article_params
+    params.require(:article).permit(:content, :title, :url).merge(shops_information: params[:shops_information], category_id: params[:category_id], image_url: image_url(params[:url]), user_id: current_api_v1_user.id)
+  end
+  def image_url(url)
+    meta_info = OpenGraphReader.fetch(url)
+    if (meta_info.respond_to?(:og, true) && meta_info.og.respond_to?(:image, true) && meta_info.og.image.respond_to?(:url)) 
+      return meta_info.og.image.url
+    else
+      return nil
+    end
   end
 end
