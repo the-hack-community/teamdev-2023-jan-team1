@@ -21,8 +21,8 @@ const Home = async () => {
       </div>
       <div className="px-4">
         <CardList listTitle="Shop List" articles={newArticles} />
-        <Footer isLoggedIn={isLoggedIn} userName="シェアがしユーザーで名前の長いひと" />
       </div>
+      <Footer isLoggedIn={isLoggedIn} userName="シェアがしユーザーで名前の長いひと" />
     </div>
   );
 };
