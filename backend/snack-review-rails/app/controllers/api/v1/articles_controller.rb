@@ -14,9 +14,6 @@ class Api::V1::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    
-    binding.pry
-    
     if @article.save
       head :created
     else
