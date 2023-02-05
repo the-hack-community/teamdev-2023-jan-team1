@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_154234) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_05_052928) do
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
@@ -21,8 +21,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_154234) do
     t.text "url"
     t.text "image_url"
     t.bigint "category_id"
+    t.bigint "user_id"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["discarded_at"], name: "index_articles_on_discarded_at"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
@@ -63,4 +65,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_154234) do
   end
 
   add_foreign_key "articles", "categories"
+  add_foreign_key "articles", "users"
 end

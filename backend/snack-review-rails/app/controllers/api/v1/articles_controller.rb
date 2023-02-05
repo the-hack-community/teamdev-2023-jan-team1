@@ -1,9 +1,13 @@
 class Api::V1::ArticlesController < ApplicationController
   def index
-    render json: {'name': 'test'}
+    @popular_articles = Article.all
+    @new_articles = Article.order(updated_at: :desc)
+    render 'index'
   end
 
   def show
+    @article = Article.find(params[:id])
+    render 'show'
   end
 
   def create
@@ -36,6 +40,6 @@ class Api::V1::ArticlesController < ApplicationController
 
   private
   def user_params
-    params.require(:article).permit(:content, :shops_information, :title, :url, :category_id).merge(image_url: @article.get_image_url)
+    params.require(:article).permit(:content, :shops_information, :title, :url, :category_id).merge(image_url: @article.get_image_url, user_id: current_api_v1_user.id)
   end
 end
