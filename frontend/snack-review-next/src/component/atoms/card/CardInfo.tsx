@@ -53,9 +53,11 @@ export const CardInfo: FC<Props> = ({
           <p className="line-clamp-1">{shopsInformation}</p>
         </div>
       </div>
-
-      <p className="text-xs line-clamp-2">{content}</p>
-      <ConfirmModal title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <div className="flex items-center gap-5">
+        <p className="text-xs line-clamp-2">{content}</p>
+        {allowEditFlag && isLoggedIn && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} />}
+      </div>
+      <ConfirmModal title={title} modalType="delete" isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };

@@ -1,14 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import type { ComponentProps } from "react";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
+import { ConfirmModal } from "@/component/atoms/card/ConfirmModal";
 import { InputField } from "@/component/atoms/form/InputField";
 import { SelectField } from "@/component/atoms/form/SelectField";
 import { TextAreaField } from "@/component/atoms/form/TextAreaField";
 
 const PostArticle = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const title = "テスト";
+
   const handleClick: ComponentProps<"button">["onClick"] = (e) => {
     e.preventDefault();
+    setIsOpen(true);
   };
 
   return (
@@ -23,6 +29,7 @@ const PostArticle = () => {
         <CommonButton isFullWidth isPrimary={false} handleClick={handleClick}>
           投稿内容を確認する
         </CommonButton>
+        <ConfirmModal title={title} modalType="post" isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </div>
   );
