@@ -17,11 +17,7 @@ export const InputField: FC<Props> = ({ label, isRequired, ...restProps }) => {
         </FormLabel>
       )}
       <div>
-        <input
-          ref={inputRef}
-          className="h-9 w-full appearance-none rounded-lg border border-gray-400 px-3 leading-tight text-gray-700 placeholder:font-light placeholder:text-gray-300 focus:border-blue-400 focus:outline-none"
-          {...restProps}
-        />
+        <input ref={inputRef} className="input-primary" {...restProps} />
       </div>
     </div>
   );
