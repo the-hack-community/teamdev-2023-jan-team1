@@ -1,9 +1,7 @@
 import Link from "next/link";
-
-import { CommonButton } from "@/component/atoms/button/CommonButton";
+import { SubmitButton } from "@/component/atoms/button/SubmitButton";
 import { InputField } from "@/component/atoms/form/InputField";
 import { Logo } from "@/component/atoms/logo/Logo";
-
 import { EMAIL_FIELD, PASSWORD_FIELD } from "@/constants/InputField";
 
 export const LoginComponent = () => {
@@ -18,9 +16,7 @@ export const LoginComponent = () => {
       <div className="flex w-full flex-col gap-6">
         <InputField {...EMAIL_FIELD} />
         <InputField {...PASSWORD_FIELD} />
-        <div className="mt-6">
-          <CommonButton isPrimary>ログイン</CommonButton>
-        </div>
+        <SubmitButton>ログイン</SubmitButton>
       </div>
       <div className="mt-8">
         <p className="font-bold">
