@@ -14,10 +14,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   const isLoggedIn = true;
 
   return (
-    <html lang="ja" data-theme="light" className={`${mPlus.className} text-gray-700`}>
+    <html lang="ja" data-theme="light">
       <head />
-      <body>
+      <body className={`${mPlus.className} text-gray-700`}>
         <main>{children}</main>
+        <div className="h-20" />
         <Footer isLoggedIn={isLoggedIn} userName="シェアがしユーザーで名前の長いひと" />
       </body>
     </html>
