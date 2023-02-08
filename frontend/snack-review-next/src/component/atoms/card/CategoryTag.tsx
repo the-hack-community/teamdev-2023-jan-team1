@@ -1,9 +1,9 @@
 import cc from "classcat";
-import type { CategoryNameType } from "@/app/lib/zodSchema";
+import type { ArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
 
 type Props = {
-  categoryName: CategoryNameType;
+  categoryName: ArticleType["categoryName"];
 };
 
 export const CategoryTag: FC<Props> = ({ categoryName }) => {
