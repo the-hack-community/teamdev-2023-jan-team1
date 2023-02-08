@@ -43,10 +43,8 @@ export const SelectFeild: FC<Props> = ({ label, isRequired, ...restProps }) => {
         {label}
         {isRequired && <span className="text-lg text-red-400">*</span>}
         <div>
-          {/* TODO: スタイル付け */}
           <select
-            name="pets"
-            id="pet-select"
+            name="category"
             className="w-full rounded-lg border border-gray-400 py-2 px-3 leading-tight text-gray-700 placeholder:font-light placeholder:text-gray-300 focus:border-blue-400 focus:outline-none"
           >
             <option value="0">お菓子の種類を選択</option>
