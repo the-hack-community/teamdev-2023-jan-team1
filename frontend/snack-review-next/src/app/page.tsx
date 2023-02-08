@@ -9,7 +9,7 @@ const Home = async () => {
 
   return (
     <div>
-      <div className="my-6 flex justify-center">
+      <div className="my-10 flex justify-center">
         <Logo />
       </div>
 
