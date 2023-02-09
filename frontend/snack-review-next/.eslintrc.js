@@ -43,13 +43,7 @@ module.exports = {
     "react/prop-types": "off",
     "no-underscore-dangle": "off",
     "global-require": "off",
-    "react/require-default-props": [
-      "error",
-      {
-        forbidDefaultForRequired: true,
-        functions: "defaultArguments",
-      },
-    ],
+    "react/require-default-props": "off",
     "import/order": [
       "error",
       {
