@@ -28,9 +28,15 @@ export const handleSignUp = (props: Props) => {
       password_confirmation: passwordVerification,
     })
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
+      const client: any = res.headers["client"];
+      const token: any = res.headers["access-token"];
+      const uid: any = res.headers["uid"];
+      Cookies.set("client", client);
+      Cookies.set("access-token", token);
+      Cookies.set("uid", uid);
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.response);
     });
 };

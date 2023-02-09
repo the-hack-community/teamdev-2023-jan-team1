@@ -7,20 +7,18 @@ import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { InputField } from "@/component/atoms/form/InputField";
 import { Logo } from "@/component/atoms/logo/Logo";
 
-import { handleSignUp } from "@/component/modules/LoginModule";
 import { EMAIL_FIELD, PASSWORD_FIELD, PASSWORD_FIELD_VERIFICATION, USER_NAME_FIELD } from "@/constants/InputField";
+import { handleSignUp } from "@/component/modules/LoginModule";
 
 export const SignUpComponent = () => {
-  // リクエスト内容
   const [userName, setUserName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordVerification, setPasswordVerification] = useState<string>("");
 
-  const handleKey = (key: string) => {
-    if (key === "Enter") {
-      handleSignUp({ userName, email, password, passwordVerification });
-    }
+  const handleClick = () => {
+    const inputValues = { userName, email, password, passwordVerification };
+    handleSignUp(inputValues);
   };
 
   return (
@@ -36,14 +34,10 @@ export const SignUpComponent = () => {
         <InputField {...EMAIL_FIELD} onChange={(e) => setEmail(e.target.value)} />
         <InputField {...PASSWORD_FIELD} onChange={(e) => setPassword(e.target.value)} />
         <InputField {...PASSWORD_FIELD_VERIFICATION} onChange={(e) => setPasswordVerification(e.target.value)} />
-        <div
-          className="mt-6"
-          role="button"
-          tabIndex={0}
-          onClick={() => handleSignUp({ userName, email, password, passwordVerification })}
-          onKeyDown={(e) => handleKey(e.key)}
-        >
-          <CommonButton isPrimary>新規登録</CommonButton>
+        <div className="mt-6">
+          <CommonButton isPrimary handleClick={handleClick}>
+            新規登録
+          </CommonButton>
         </div>
       </div>
       <div className="mt-8">
