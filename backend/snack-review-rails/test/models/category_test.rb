@@ -12,6 +12,7 @@
 # Indexes
 #
 #  index_categories_on_category_name  (category_name) UNIQUE
+#  index_categories_on_discarded_at   (discarded_at)
 #
 require "test_helper"
 

@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_225331) do
     t.string "category_color", null: false
     t.datetime "discarded_at"
     t.index ["category_name"], name: "index_categories_on_category_name", unique: true
+    t.index ["discarded_at"], name: "index_categories_on_discarded_at"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
