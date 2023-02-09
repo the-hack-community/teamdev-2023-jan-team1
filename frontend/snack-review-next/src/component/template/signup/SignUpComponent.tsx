@@ -7,8 +7,8 @@ import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { InputField } from "@/component/atoms/form/InputField";
 import { Logo } from "@/component/atoms/logo/Logo";
 
+import { HandleSignUp } from "@/component/modules/LoginModule";
 import { EMAIL_FIELD, PASSWORD_FIELD, PASSWORD_FIELD_VERIFICATION, USER_NAME_FIELD } from "@/constants/InputField";
-import { handleSignUp } from "@/component/modules/LoginModule";
 
 export const SignUpComponent = () => {
   const [userName, setUserName] = useState<string>("");
@@ -18,7 +18,7 @@ export const SignUpComponent = () => {
 
   const handleClick = () => {
     const inputValues = { userName, email, password, passwordVerification };
-    handleSignUp(inputValues);
+    HandleSignUp(inputValues);
   };
 
   return (

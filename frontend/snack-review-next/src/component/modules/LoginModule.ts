@@ -11,7 +11,7 @@ type Props = {
   password: string;
   passwordVerification: string;
 };
-export const handleSignUp = (props: Props) => {
+export const HandleSignUp = (props: Props) => {
   const { userName, email, password, passwordVerification } = props;
 
   const BASEURL = BaseUrl();
@@ -28,7 +28,7 @@ export const handleSignUp = (props: Props) => {
       password_confirmation: passwordVerification,
     })
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       const client: any = res.headers["client"];
       const token: any = res.headers["access-token"];
       const uid: any = res.headers["uid"];
@@ -37,6 +37,9 @@ export const handleSignUp = (props: Props) => {
       Cookies.set("uid", uid);
     })
     .catch((error) => {
-      console.log(error.response);
+      // console.log(error.response);
+      Cookies.remove("client");
+      Cookies.remove("access-token");
+      Cookies.remove("uid");
     });
 };
