@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_06_225331) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_133020) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_225331) do
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "name"
+    t.string "name", null: false
     t.string "email"
     t.text "tokens"
     t.integer "sign_in_count", default: 0, null: false

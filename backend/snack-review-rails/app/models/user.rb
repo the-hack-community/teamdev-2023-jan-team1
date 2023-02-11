@@ -11,7 +11,7 @@
 #  encrypted_password :string(255)      default(""), not null
 #  last_sign_in_at    :datetime
 #  last_sign_in_ip    :string(255)
-#  name               :string(255)
+#  name               :string(255)      not null
 #  provider           :string(255)      default("email"), not null
 #  sign_in_count      :integer          default(0), not null
 #  tokens             :text(65535)
