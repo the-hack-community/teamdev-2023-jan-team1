@@ -3,7 +3,7 @@ class Api::V1::ArticlesController < ApplicationController
   before_action :alert_authorize, only: ['create', 'update', 'destroy']
   def index
     @popular_articles = Article.all
-    @new_articles = Article.order(updated_at: :desc)
+    @new_articles = Article.order(updated_at: :desc)   
     render 'index'
   end
 
@@ -23,8 +23,9 @@ class Api::V1::ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-
-    if @article.update(article_params)
+    if different_user?
+      head :unauthorized
+    elsif @article.update(article_params)
       head :no_content
     else
       render json: @article.errors, status: :unprocessable_entity
@@ -33,7 +34,9 @@ class Api::V1::ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    if @article.discard
+    if different_user?
+      head :unauthorized
+    elsif @article.discard
       head :no_content
     else
       render json: @article.errors, status: :unprocessable_entity
@@ -42,7 +45,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:content, :title, :url).merge(shops_information: params[:shops_information], category_id: params[:category_id], image_url: image_url(params[:url]), user_id: current_api_v1_user.id)
+    params.permit(:content, :title, :url).merge(shops_information: params[:shops_information], category_id: params[:category_id], image_url: image_url(params[:url]), user_id: current_api_v1_user.id)
   end
   def image_url(url)
     meta_info = OpenGraphReader.fetch(url)
@@ -54,5 +57,8 @@ class Api::V1::ArticlesController < ApplicationController
   end
   def alert_authorize
     head :unauthorized unless api_v1_user_signed_in?
+  end
+  def different_user?
+    current_api_v1_user.id != @article.user_id
   end
 end
