@@ -7,6 +7,7 @@
 
 # このサイトでできること
 
+
 |カテゴリー|#|機能名          |説明                                |非ログイン時 利用可否|
 |----------|-|------------------|------------------------------------------------------|--|
 |認証      |1|サインアップ機能  |・メールアドレス・パスワードで会員登録できる。|        |  |
@@ -66,6 +67,7 @@ gem "puma", "~> 5.0"
 
 # 使用したGem
 - devise # 認証まわりはおまかせ
+- rack-cors # cors設定
 - rspec-rails # RSpec
 - pry-rails # 最高のデバッグをあなたに
 - factory_bot_rails # テストデータはお手の物
@@ -76,7 +78,8 @@ gem "puma", "~> 5.0"
 - kaminari # ページングといえばこれ
 - config # 環境ごとの設定はここ
 - dotenv-rails # .envを使う方はこちら
-- juilder # JSONを簡単に生成
+- jbuilder # JSONを簡単に生成
+- active_model_serializers # JSON形式のデータの整える
 - discard #論理削除
   
 ## Show your support
