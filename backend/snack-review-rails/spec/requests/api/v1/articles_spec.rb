@@ -49,13 +49,10 @@ RSpec.describe "Api::V1::Articles", type: :request do
       expect(json).to have_key 'updatedAt'
     end
     it "ログインしている時のリクエスト成功（自分の投稿）" do
-      get "http://localhost:3001/api/v1/articles/#{article.to_param}", params: {format: :jbuilder}, headers: token
+      get "/api/v1/articles/#{article.to_param}", params: {format: :jbuilder}, headers: token
       request.headers['Accept'] = 'application/json'
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
-      
-      binding.pry
-      
       expect(json).to have_key 'title'
       expect(json).to have_key 'content'
       expect(json).to have_key 'categoryName'

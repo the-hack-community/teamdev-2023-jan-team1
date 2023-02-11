@@ -4,6 +4,9 @@ class Api::V1::ArticlesController < ApplicationController
   def index
     @popular_articles = Article.all
     @new_articles = Article.order(updated_at: :desc)
+    
+    # binding.pry
+    
     render 'index'
   end
 
