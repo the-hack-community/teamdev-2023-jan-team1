@@ -6,6 +6,7 @@
 #  content           :text(65535)      not null
 #  discarded_at      :datetime
 #  image_url         :text(65535)
+#  impressions_count :integer          default(0)
 #  shops_information :text(65535)
 #  title             :string(255)      not null
 #  url               :text(65535)
@@ -34,6 +35,8 @@ class Article < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
+  validates :impressions_count, presence: true
+  is_impressionable counter_cache: true
   belongs_to :category
   belongs_to :user  
 end

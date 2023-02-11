@@ -89,6 +89,7 @@ RSpec.describe "Api::V1::Articles", type: :request do
     
   describe "showアクションのテスト" do
     it "ログインしていない時のリクエスト成功" do
+      before_page_view_count = article.impressions_count
       get "http://localhost:3001/api/v1/articles/#{article.to_param}", params: {format: :jbuilder}
       request.headers['Accept'] = 'application/json'
       expect(response).to have_http_status(:success)
@@ -104,8 +105,11 @@ RSpec.describe "Api::V1::Articles", type: :request do
       expect(json['allowEditFlag']).to eq false
       expect(json).to have_key 'createdAt'
       expect(json).to have_key 'updatedAt'
+      after_page_view_count = Article.find(article.to_param).impressions_count
+      expect(after_page_view_count).to eq (before_page_view_count + 1)
     end
     it "ログインしている時のリクエスト成功（自分の投稿）" do
+      before_page_view_count = article.impressions_count
       get "/api/v1/articles/#{article.to_param}", params: {format: :jbuilder}, headers: token
       request.headers['Accept'] = 'application/json'
       expect(response).to have_http_status(:success)
@@ -121,6 +125,8 @@ RSpec.describe "Api::V1::Articles", type: :request do
       expect(json['allowEditFlag']).to eq true
       expect(json).to have_key 'createdAt'
       expect(json).to have_key 'updatedAt'
+      after_page_view_count = Article.find(article.to_param).impressions_count
+      expect(after_page_view_count).to eq (before_page_view_count + 1)
     end
     it "存在しないidでshowアクション失敗" do
       expect {get "http://localhost:3001/api/v1/articles/0"}.to raise_error(ActiveRecord::RecordNotFound)

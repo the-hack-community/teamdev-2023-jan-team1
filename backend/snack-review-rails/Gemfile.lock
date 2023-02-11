@@ -1,3 +1,13 @@
+GIT
+  remote: git@github.com:charlotte-ruby/impressionist.git
+  revision: 46a582ff8cd3496da64f174b30b91f9d97e86643
+  ref: 46a582ff8cd3496da64f174b30b91f9d97e86643
+  specs:
+    impressionist (2.0.0)
+      friendly_id
+      nokogiri (~> 1)
+      rails (>= 3.2.15)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,6 +162,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    friendly_id (5.5.0)
+      activerecord (>= 4.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -299,8 +311,6 @@ GEM
     timeout (0.3.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2022.7)
-      tzinfo (>= 1.0.0)
     unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -324,6 +334,7 @@ DEPENDENCIES
   discard
   dotenv-rails
   factory_bot_rails
+  impressionist!
   jbuilder
   kaminari
   mysql2 (~> 0.5)
