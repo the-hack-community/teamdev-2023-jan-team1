@@ -2,23 +2,36 @@
 
 import Link from "next/link";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { InputField } from "@/component/atoms/form/InputField";
 import { Logo } from "@/component/atoms/logo/Logo";
 
-import { HandleSignUp } from "@/component/modules/LoginModule";
+import HandleSignUp from "@/component/modules/LoginModule";
 import { EMAIL_FIELD, PASSWORD_FIELD, PASSWORD_FIELD_VERIFICATION, USER_NAME_FIELD } from "@/constants/InputField";
+
+type Response = { resState: string; erroy?: Array<string> | undefined };
 
 export const SignUpComponent = () => {
   const [userName, setUserName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordVerification, setPasswordVerification] = useState<string>("");
+  const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const inputValues = { userName, email, password, passwordVerification };
-    HandleSignUp(inputValues);
+    const res: Response = await HandleSignUp(inputValues);
+
+    // サインアップ成功時
+    if (res.resState === "succes") {
+      router.push("/");
+    }
+    // TODO: サインアップ失敗時
+    // stateでInputFieldに投げるイメージ？
+    // if (res.resState === "faild") {
+    // }
   };
 
   return (

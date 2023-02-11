@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
-
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from "js-cookie";
 import { BaseUrl } from "@/component/modules/BaseUrl";
@@ -11,35 +10,41 @@ type Props = {
   password: string;
   passwordVerification: string;
 };
-export const HandleSignUp = (props: Props) => {
-  const { userName, email, password, passwordVerification } = props;
 
+const HandleSignUp = (props: Props) => {
   const BASEURL = BaseUrl();
+  const { userName, email, password, passwordVerification } = props;
 
   const generalApiInterface = axios.create({
     baseURL: BASEURL,
   });
 
-  generalApiInterface
-    .post("auth", {
-      name: userName,
-      email,
-      password,
-      password_confirmation: passwordVerification,
-    })
-    .then((res) => {
-      // console.log(res.data);
-      const client: any = res.headers["client"];
-      const token: any = res.headers["access-token"];
-      const uid: any = res.headers["uid"];
-      Cookies.set("client", client);
-      Cookies.set("access-token", token);
-      Cookies.set("uid", uid);
-    })
-    .catch((error) => {
-      // console.log(error.response);
-      Cookies.remove("client");
-      Cookies.remove("access-token");
-      Cookies.remove("uid");
-    });
+  return new Promise((resolve, rejects) => {
+    generalApiInterface
+      .post("auth", {
+        name: userName,
+        email,
+        password,
+        password_confirmation: passwordVerification,
+      })
+      .then((res) => {
+        const { client } = res.headers;
+        const { token } = res.headers;
+        const { uid } = res.headers;
+        Cookies.set("client", client);
+        Cookies.set("access-token", token);
+        Cookies.set("uid", uid);
+        const response = { resState: "succes" };
+        resolve(response);
+      })
+      .catch((error) => {
+        Cookies.remove("client");
+        Cookies.remove("access-token");
+        Cookies.remove("uid");
+        const response = { resState: "faild", erroy: error.response.data.errors.full_messages };
+        rejects(response);
+      });
+  });
 };
+
+export default HandleSignUp;
