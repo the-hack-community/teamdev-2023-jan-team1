@@ -14,11 +14,8 @@
 #  index_categories_on_category_name  (category_name) UNIQUE
 #  index_categories_on_discarded_at   (discarded_at)
 #
-class Category < ApplicationRecord
-  include Discard::Model
-  default_scope -> { kept }
+class CategorySerializer < ActiveModel::Serializer
   
-  validates :category_name, presence: true, uniqueness: true
-  validates :category_color, presence: true
-  has_many :articles
+  type 'categories'
+  attributes :id ,:category_name,:category_color
 end
