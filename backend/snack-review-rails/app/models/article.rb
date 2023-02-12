@@ -12,17 +12,28 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  category_id       :bigint
+#  user_id           :bigint
 #
 # Indexes
 #
-#  index_articles_on_category_id  (category_id)
+#  index_articles_on_category_id   (category_id)
+#  index_articles_on_discarded_at  (discarded_at)
+#  index_articles_on_user_id       (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (category_id => categories.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class Article < ApplicationRecord
+  include ActiveModel::Serializers::JSON
+  # discardのモジュールを読み込む
+  include Discard::Model
+  # デフォルトでは削除されていないものだけを検索するようにする
+  default_scope -> { kept }
+
   validates :title, presence: true
   validates :content, presence: true
   belongs_to :category
+  belongs_to :user  
 end

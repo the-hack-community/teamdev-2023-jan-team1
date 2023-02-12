@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -28,7 +26,6 @@
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-
 #
 # Indexes
 #
@@ -37,13 +34,10 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
-  include DeviseTokenAuth::Concerns::User
-
-  has_many :articles
-  attr_accessor :name
+FactoryBot.define do
+  factory :user do
+    name { 'test_user' }
+    email { 'test@example.com' }
+    password { 'password' }
+  end
 end

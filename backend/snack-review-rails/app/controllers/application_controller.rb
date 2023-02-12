@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::API
-        include DeviseTokenAuth::Concerns::SetUserByToken
+  include DeviseTokenAuth::Concerns::SetUserByToken
+  include ActionController::MimeResponds
+  before_action :snakeize_params
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-        before_action :configure_permitted_parameters, if: :devise_controller?
-
-        protected
-
-        def configure_permitted_parameters
-                devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-        end
+  protected
+  def snakeize_params
+    params.deep_snakeize!
+  end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
 end
