@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { CategoryTag } from "./CategoryTag";
 import { ConfirmModal } from "./ConfirmModal";
-import { EditAndDeleteIcons } from "./EditAndDeleteIcons";
 import type { ArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { formatDate } from "@/lib/helpers";
@@ -38,7 +37,12 @@ export const CardInfo: FC<Props> = ({
 
   return (
     <>
-      <h2 className="mt-2 font-bold line-clamp-1">{title}</h2>
+      <div className="mt-2 flex items-center justify-between">
+        <h2 className="font-bold line-clamp-1">{title}</h2>
+        {allowEditFlag && isLoggedIn && (
+          <p className="shrink-0 rounded-md bg-red-400 px-2 py-1 text-xs text-white">自分の投稿</p>
+        )}
+      </div>
       <div className="flex items-center gap-2 overflow-hidden text-2xs text-gray-400">
         <CategoryTag categoryName={categoryName} />
         <div>
@@ -49,10 +53,8 @@ export const CardInfo: FC<Props> = ({
           <p className="line-clamp-1">{shopsInformation}</p>
         </div>
       </div>
-      <div className="flex items-center gap-5">
-        <p className="text-xs line-clamp-2">{content}</p>
-        {allowEditFlag && isLoggedIn && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} />}
-      </div>
+
+      <p className="text-xs line-clamp-2">{content}</p>
       <ConfirmModal title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
