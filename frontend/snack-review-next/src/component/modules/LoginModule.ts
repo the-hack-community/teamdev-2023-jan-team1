@@ -19,7 +19,7 @@ const HandleSignUp = (props: Props) => {
     baseURL: BASEURL,
   });
 
-  return new Promise((resolve, rejects) => {
+  return new Promise((resolve) => {
     generalApiInterface
       .post("auth", {
         name: userName,
@@ -42,7 +42,7 @@ const HandleSignUp = (props: Props) => {
         Cookies.remove("access-token");
         Cookies.remove("uid");
         const response = { resState: "faild", erroy: error.response.data.errors.full_messages };
-        rejects(response);
+        resolve(response);
       });
   });
 };
