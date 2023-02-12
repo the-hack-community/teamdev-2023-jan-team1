@@ -11,7 +11,7 @@ import { Logo } from "@/component/atoms/logo/Logo";
 import HandleSignUp from "@/component/modules/LoginModule";
 import { EMAIL_FIELD, PASSWORD_FIELD, PASSWORD_FIELD_VERIFICATION, USER_NAME_FIELD } from "@/constants/InputField";
 
-type Response = { resState: string; erroy?: Array<string> | undefined };
+// type Response = { resState: string; erroy?: Array<string> | undefined };
 
 export const SignUpComponent = () => {
   const [userName, setUserName] = useState<string>("");
@@ -22,12 +22,13 @@ export const SignUpComponent = () => {
 
   const handleClick = async () => {
     const inputValues = { userName, email, password, passwordVerification };
-    const res: Response = await HandleSignUp(inputValues);
+    const res: any = await HandleSignUp(inputValues);
 
     // サインアップ成功時
     if (res.resState === "succes") {
       router.push("/");
     }
+
     // TODO: サインアップ失敗時
     // stateでInputFieldに投げるイメージ？
     // if (res.resState === "faild") {
