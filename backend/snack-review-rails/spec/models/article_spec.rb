@@ -33,6 +33,8 @@ RSpec.describe Article, type: :model do
   let(:title) { 'Test title' }
   let(:content) { 'Test Content' }
   let(:category) { create(:category) }
+  let(:user) { create(:user) }
+
 
   shared_examples(:validation_error) do
     it {
@@ -57,6 +59,11 @@ RSpec.describe Article, type: :model do
       article = build(:article, category_id: nil)
       expect(article.save).to be_falsey
       expect(article.errors[:category]).to eq(['must exist'])
+    }
+
+    it('impressions_countの初期値は0') {
+      article = create(:article, category: category, user: user)
+      expect(article.impressions_count).to eq(0)
     }
   end
 end

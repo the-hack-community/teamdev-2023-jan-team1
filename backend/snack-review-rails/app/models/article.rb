@@ -35,6 +35,8 @@ class Article < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
+  validates :impressions_count, presence: true
+  is_impressionable counter_cache: true
   belongs_to :category
   belongs_to :user  
 end

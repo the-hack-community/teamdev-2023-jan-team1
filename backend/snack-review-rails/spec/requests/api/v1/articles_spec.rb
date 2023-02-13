@@ -27,11 +27,16 @@ RSpec.describe "Api::V1::Articles", type: :request do
       it "ログインしていない時のリクエスト成功" do
         index_user = create(:user)
         index_category = create(:category)
-        create_list(:article, 10, user: index_user, category: index_category)
+        create_list(:article, 10, user: index_user, category: index_category, impressions_count: rand(0..100))
         get "http://localhost:3001/api/v1/articles", params: {format: :jbuilder}
         request.headers['Accept'] = 'application/json'
         json_array = JSON.parse(response.body)
-        json_array['popularArticles'].each do |json|
+        expect(json_array['popularArticles'].count).to eq(5)
+        expect(json_array['newArticles'].count).to eq(10)
+        previous_page_view_count = 0
+        json_array['popularArticles'].reverse_each do |json|
+          expect(json).to have_key 'id'
+          expect(Article.find(json['id']).impressions_count).to be>= previous_page_view_count
           expect(json).to have_key 'title'
           expect(json).to have_key 'content'
           expect(json).to have_key 'categoryName'
@@ -43,8 +48,10 @@ RSpec.describe "Api::V1::Articles", type: :request do
           expect(json['allowEditFlag']).to eq false
           expect(json).to have_key 'createdAt'
           expect(json).to have_key 'updatedAt'
+          previous_page_view_count = Article.find(json['id']).impressions_count
         end
         json_array['newArticles'].each do |json|
+          expect(json).to have_key 'id'
           expect(json).to have_key 'title'
           expect(json).to have_key 'content'
           expect(json).to have_key 'categoryName'
@@ -72,9 +79,11 @@ RSpec.describe "Api::V1::Articles", type: :request do
         get "http://localhost:3001/api/v1/articles", params: {format: :jbuilder}, headers: index_token
         request.headers['Accept'] = 'application/json'
         json_array = JSON.parse(response.body)
+        expect(json_array['popularArticles'].count).to eq(5)
+        expect(json_array['newArticles'].count).to eq(10)
         own_polular_articles_count = 0
         own_new_articles_count = 0
-        json_array['popularArticles'].each do |json|
+        json_array['popularArticles'].reverse_each do |json|
           own_polular_articles_count += 1 if json['allowEditFlag']
         end
         json_array['newArticles'].each do |json|
@@ -89,6 +98,7 @@ RSpec.describe "Api::V1::Articles", type: :request do
     
   describe "showアクションのテスト" do
     it "ログインしていない時のリクエスト成功" do
+      before_page_view_count = article.impressions_count
       get "http://localhost:3001/api/v1/articles/#{article.to_param}", params: {format: :jbuilder}
       request.headers['Accept'] = 'application/json'
       expect(response).to have_http_status(:success)
@@ -104,8 +114,11 @@ RSpec.describe "Api::V1::Articles", type: :request do
       expect(json['allowEditFlag']).to eq false
       expect(json).to have_key 'createdAt'
       expect(json).to have_key 'updatedAt'
+      after_page_view_count = Article.find(article.to_param).impressions_count
+      expect(after_page_view_count).to eq (before_page_view_count + 1)
     end
     it "ログインしている時のリクエスト成功（自分の投稿）" do
+      before_page_view_count = article.impressions_count
       get "/api/v1/articles/#{article.to_param}", params: {format: :jbuilder}, headers: token
       request.headers['Accept'] = 'application/json'
       expect(response).to have_http_status(:success)
@@ -121,6 +134,8 @@ RSpec.describe "Api::V1::Articles", type: :request do
       expect(json['allowEditFlag']).to eq true
       expect(json).to have_key 'createdAt'
       expect(json).to have_key 'updatedAt'
+      after_page_view_count = Article.find(article.to_param).impressions_count
+      expect(after_page_view_count).to eq (before_page_view_count + 1)
     end
     it "存在しないidでshowアクション失敗" do
       expect {get "http://localhost:3001/api/v1/articles/0"}.to raise_error(ActiveRecord::RecordNotFound)

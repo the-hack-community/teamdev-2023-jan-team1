@@ -1,14 +1,16 @@
 require 'open_graph_reader'
 class Api::V1::ArticlesController < ApplicationController
+  impressionist actions:[:show]
   before_action :alert_authorize, only: ['create', 'update', 'destroy']
   def index
-    @popular_articles = Article.all
-    @new_articles = Article.order(updated_at: :desc)   
+    @popular_articles = Article.order(impressions_count: 'DESC').limit(5)
+    @new_articles = Article.order(updated_at: "DESC")   
     render 'index'
   end
 
   def show
     @article = Article.find(params[:id])
+    impressionist(@article, nil, unique: [:session_hash]) 
     render 'show'
   end
 
