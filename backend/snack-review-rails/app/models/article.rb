@@ -27,7 +27,14 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Article < ApplicationRecord
+  include ActiveModel::Serializers::JSON
+  # discardのモジュールを読み込む
+  include Discard::Model
+  # デフォルトでは削除されていないものだけを検索するようにする
+  default_scope -> { kept }
+
   validates :title, presence: true
   validates :content, presence: true
   belongs_to :category
+  belongs_to :user  
 end
