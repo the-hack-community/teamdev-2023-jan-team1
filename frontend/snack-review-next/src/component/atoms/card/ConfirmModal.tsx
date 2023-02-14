@@ -1,12 +1,13 @@
 "use client";
 
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Dialog, Transition } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import toast, { Toaster } from "react-hot-toast";
+import { CommonButton } from "../button/CommonButton";
 import { CommonNotification } from "./CommonNotification";
+import { ModalInfoField } from "./ModalInfoField";
 import type { ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
-import { CommonButton } from "@/component/atoms/button/CommonButton";
-import { ModalInfoField } from "@/component/atoms/card/ModalInfoField";
 
 type Props = {
   articleState: ArticleStateType;
@@ -37,47 +38,71 @@ export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIs
   };
 
   return (
-    <div>
-      {isOpen && (
-        <>
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-            <div className="relative flex w-screen flex-col rounded-lg bg-white p-6 shadow-lg">
-              <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-lg font-bold text-red-400">
-                  {modalType === "delete" ? "削除しますか?" : "以下の内容で投稿しますか?"}
-                </h3>
-                <button type="button" onClick={() => setIsOpen(false)}>
-                  <XMarkIcon className="h-6" />
-                </button>
-              </div>
-              <div className="mb-6">
-                <ModalInfoField infoLabel="タイトル" infoText={title} />
-              </div>
-              {modalType === "post" && (
-                <>
-                  <div className="mb-6">
-                    <ModalInfoField infoLabel="コンテンツ" infoText={content} />
+    <>
+      <Transition.Root show={isOpen}>
+        <Dialog as="div" className="relative z-10" onClose={setIsOpen}>
+          <Transition.Child
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500/75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4">
+              <Transition.Child
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative w-[90vw] overflow-hidden rounded-lg bg-white p-4 shadow-xl transition-all">
+                  <div>
+                    <div className="mb-3 flex items-center justify-between">
+                      <h3 className="text-lg font-bold text-red-400">
+                        {modalType === "delete" ? "削除しますか?" : "以下の内容で投稿しますか?"}
+                      </h3>
+                      <button type="button" onClick={() => setIsOpen(false)}>
+                        <XMarkIcon className="h-6" />
+                      </button>
+                    </div>
+                    <div className="mb-2">
+                      <ModalInfoField infoLabel="タイトル" infoText={title} />
+                    </div>
+                    {modalType === "post" && (
+                      <>
+                        <div className="mb-2">
+                          <ModalInfoField infoLabel="コンテンツ" infoText={content} />
+                        </div>
+                        <div className="mb-2">
+                          <ModalInfoField infoLabel="種類" infoText={category} />
+                        </div>
+                        <div className="mb-2">
+                          <ModalInfoField infoLabel="お店のURL" infoText={shopUrl} />
+                        </div>
+                        <div className="mb-2">
+                          <ModalInfoField infoLabel="お店の情報" infoText={shopInfo} />
+                        </div>
+                      </>
+                    )}
+
+                    <CommonButton isPrimary isFullWidth type="button" handleClick={handleClick}>
+                      {modalType === "delete" ? "削除する" : "投稿する"}
+                    </CommonButton>
                   </div>
-                  <div className="mb-6">
-                    <ModalInfoField infoLabel="種類" infoText={category} />
-                  </div>
-                  <div className="mb-6">
-                    <ModalInfoField infoLabel="お店のURL" infoText={shopUrl} />
-                  </div>
-                  <div className="mb-6">
-                    <ModalInfoField infoLabel="お店の情報" infoText={shopInfo} />
-                  </div>
-                </>
-              )}
-              <CommonButton isPrimary isFullWidth type="button" handleClick={handleClick}>
-                {modalType === "delete" ? "削除する" : "投稿する"}
-              </CommonButton>
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
           </div>
-          <div className="fixed inset-0 z-40 bg-black/25 backdrop-blur-sm" />
-        </>
-      )}
+        </Dialog>
+      </Transition.Root>
       <Toaster />
-    </div>
+    </>
   );
 };
