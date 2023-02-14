@@ -3,13 +3,13 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import toast, { Toaster } from "react-hot-toast";
 import { CommonNotification } from "./CommonNotification";
-import type { State } from "@/app/article/post/page";
+import type { ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { ModalInfoField } from "@/component/atoms/card/ModalInfoField";
 
 type Props = {
-  state: State;
+  articleState: ArticleStateType;
   modalType: "post" | "delete";
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
@@ -22,13 +22,13 @@ const appearToast = (toastTile: "投稿しました" | "削除しました") => 
   });
 };
 
-export const ConfirmModal: FC<Props> = ({ state, modalType, isOpen, setIsOpen }) => {
-  const { title, content, category, shopUrl, shopInfo } = state;
+export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen }) => {
+  const { title, content, category, shopUrl, shopInfo } = articleState;
   const handleClick: ComponentProps<"button">["onClick"] = (e) => {
     e.preventDefault();
     if (modalType === "post") {
       // TODO: 送信処理
-      console.info(state);
+      console.info(articleState);
       appearToast("投稿しました");
     } else {
       appearToast("削除しました");
@@ -69,7 +69,7 @@ export const ConfirmModal: FC<Props> = ({ state, modalType, isOpen, setIsOpen })
                   </div>
                 </>
               )}
-              <CommonButton isPrimary isFullWidth handleClick={handleClick}>
+              <CommonButton isPrimary isFullWidth type="button" handleClick={handleClick}>
                 {modalType === "delete" ? "削除する" : "投稿する"}
               </CommonButton>
             </div>

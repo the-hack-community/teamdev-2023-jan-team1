@@ -44,6 +44,7 @@ module.exports = {
     "no-underscore-dangle": "off",
     "global-require": "off",
     "react/require-default-props": "off",
+    "prefer-regex-literals": "off",
     "import/order": [
       "error",
       {
