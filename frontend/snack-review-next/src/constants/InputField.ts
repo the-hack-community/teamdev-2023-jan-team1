@@ -1,9 +1,10 @@
-type InputKeyType = "id" | "label" | "placeholder" | "isRequired" | "type";
+type InputKeyType = "id" | "label" | "placeholder" | "isRequired" | "type" | "name";
 
 // ユーザー名フォームの定数
 export const USER_NAME_FIELD = {
   label: "ユーザー名",
-  id: "text",
+  id: "username",
+  name: "username",
   type: "text",
   placeholder: "username",
   isRequired: true,
@@ -13,6 +14,7 @@ export const USER_NAME_FIELD = {
 export const EMAIL_FIELD = {
   label: "メールアドレス",
   id: "email",
+  name: "email",
   type: "email",
   placeholder: "mail@example.com",
   isRequired: true,
@@ -22,6 +24,7 @@ export const EMAIL_FIELD = {
 export const PASSWORD_FIELD = {
   label: "パスワード",
   id: "password",
+  name: "password",
   type: "password",
   placeholder: "your password",
   isRequired: true,
@@ -31,6 +34,7 @@ export const PASSWORD_FIELD = {
 export const PASSWORD_FIELD_VERIFICATION = {
   label: "パスワード確認",
   id: "confirmPassword",
+  name: "confirmPassword",
   type: "password",
   placeholder: "your password",
   isRequired: true,
@@ -40,6 +44,7 @@ export const PASSWORD_FIELD_VERIFICATION = {
 export const ARTICLE_TITLE = {
   label: "タイトル",
   id: "articleTitle",
+  name: "title",
   type: "text",
   placeholder: "タイトルを入れましょう。",
   isRequired: true,
@@ -49,6 +54,7 @@ export const ARTICLE_TITLE = {
 export const ARTICLE_CONTENT = {
   label: "コンテンツ",
   id: "articleContent",
+  name: "content",
   type: "text",
   placeholder: "自分の感想を共有しましょう。",
   isRequired: true,
@@ -58,6 +64,7 @@ export const ARTICLE_CONTENT = {
 export const ARTICLE_SHOP_URL = {
   label: "お店のURL",
   id: "articleShopUrl",
+  name: "shopUrl",
   type: "text",
   placeholder: "https://example.com",
   isRequired: true,
@@ -67,6 +74,7 @@ export const ARTICLE_SHOP_URL = {
 export const ARTICLE_SHOP_INFO = {
   label: "お店の情報",
   id: "articleShopInfo",
+  name: "shopInfo",
   type: "text",
   placeholder: "東京都港区青山1-1-1 シェアビル100",
   isRequired: false,
@@ -76,6 +84,7 @@ export const ARTICLE_SHOP_INFO = {
 export const CATEGORY = {
   label: "種類",
   id: "category",
+  name: "category",
   type: "",
   placeholder: "",
   isRequired: true,
