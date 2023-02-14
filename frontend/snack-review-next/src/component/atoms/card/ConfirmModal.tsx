@@ -3,27 +3,36 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import toast, { Toaster } from "react-hot-toast";
 import { CommonNotification } from "./CommonNotification";
+import type { State } from "@/app/article/post/page";
 import type { ComponentProps, FC } from "react";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { ModalInfoField } from "@/component/atoms/card/ModalInfoField";
 
 type Props = {
-  title: string;
+  state: State;
   modalType: "post" | "delete";
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
 };
 
-export const ConfirmModal: FC<Props> = ({ title, modalType, isOpen, setIsOpen }) => {
+const appearToast = (toastTile: "投稿しました" | "削除しました") => {
+  return toast.custom((t) => <CommonNotification t={t} toastTitle={toastTile} />, {
+    duration: 4000,
+    position: "top-center",
+  });
+};
+
+export const ConfirmModal: FC<Props> = ({ state, modalType, isOpen, setIsOpen }) => {
+  const { title, content, category, shopUrl, shopInfo } = state;
   const handleClick: ComponentProps<"button">["onClick"] = (e) => {
     e.preventDefault();
-    toast.custom(
-      (t) => <CommonNotification t={t} toastTitle={modalType === "delete" ? "削除しました" : "投稿しました"} />,
-      {
-        duration: 4000,
-        position: "top-center",
-      }
-    );
+    if (modalType === "post") {
+      // TODO: 送信処理
+      console.info(state);
+      appearToast("投稿しました");
+    } else {
+      appearToast("削除しました");
+    }
     setIsOpen(false);
   };
 
@@ -47,16 +56,16 @@ export const ConfirmModal: FC<Props> = ({ title, modalType, isOpen, setIsOpen })
               {modalType === "post" && (
                 <>
                   <div className="mb-6">
-                    <ModalInfoField infoLabel="コンテンツ" infoText={title} />
+                    <ModalInfoField infoLabel="コンテンツ" infoText={content} />
                   </div>
                   <div className="mb-6">
-                    <ModalInfoField infoLabel="種類" infoText={title} />
+                    <ModalInfoField infoLabel="種類" infoText={category} />
                   </div>
                   <div className="mb-6">
-                    <ModalInfoField infoLabel="お店のURL" infoText={title} />
+                    <ModalInfoField infoLabel="お店のURL" infoText={shopUrl} />
                   </div>
                   <div className="mb-6">
-                    <ModalInfoField infoLabel="お店の情報" infoText={title} />
+                    <ModalInfoField infoLabel="お店の情報" infoText={shopInfo} />
                   </div>
                 </>
               )}
