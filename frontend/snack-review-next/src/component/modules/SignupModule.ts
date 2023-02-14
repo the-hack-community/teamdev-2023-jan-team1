@@ -11,7 +11,7 @@ type Props = {
   passwordVerification: string;
 };
 
-const HandleSignUp = (props: Props) => {
+const PostSignUp = (props: Props) => {
   const BASEURL = BaseUrl();
   const { userName, email, password, passwordVerification } = props;
 
@@ -38,13 +38,14 @@ const HandleSignUp = (props: Props) => {
         resolve(response);
       })
       .catch((error) => {
+        // console.log(error.response.data.errors);
         Cookies.remove("client");
         Cookies.remove("access-token");
         Cookies.remove("uid");
-        const response = { resState: "faild", erroy: error.response.data.errors.full_messages };
+        const response = { resState: "faild", erroy: error.response.data.errors };
         resolve(response);
       });
   });
 };
 
-export default HandleSignUp;
+export default PostSignUp;
