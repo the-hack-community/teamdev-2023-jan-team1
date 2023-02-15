@@ -1,11 +1,11 @@
 "use client";
 
 import { FormLabel } from "./FormLabel";
-import type { ArticleStateKeyType, ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import { ArticleStateKeyType, ArticleStateType } from "@/constants/InputField";
 
-type Props = ComponentProps<"input"> & {
+type Props = ComponentProps<"textarea"> & {
   label?: string;
   isRequired: boolean;
   name: ArticleStateKeyType;
@@ -13,7 +13,7 @@ type Props = ComponentProps<"input"> & {
   errors: FieldErrors<ArticleStateType>;
 };
 
-export const InputField: FC<Props> = ({ label, isRequired, register, errors, name, ...restProps }) => {
+export const TextAreaField: FC<Props> = ({ label, isRequired, register, name, errors, ...restProps }) => {
   return (
     <div className="w-full">
       {label && (
@@ -22,7 +22,7 @@ export const InputField: FC<Props> = ({ label, isRequired, register, errors, nam
         </FormLabel>
       )}
       <div>
-        <input className="input-primary" {...restProps} {...register(name)} />
+        <textarea className="input-primary h-28" {...restProps} {...register(name)} />
         {errors && <p className="mt-1 text-red-400">{errors[name]?.message}</p>}
       </div>
     </div>

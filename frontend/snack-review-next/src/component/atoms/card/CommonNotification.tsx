@@ -5,9 +5,10 @@ import type { FC } from "react";
 
 type Props = {
   t: Toast;
+  toastTitle: string;
 };
 
-export const CommonNotification: FC<Props> = ({ t }) => {
+export const CommonNotification: FC<Props> = ({ t, toastTitle }) => {
   return (
     <div
       className={`${
@@ -17,7 +18,7 @@ export const CommonNotification: FC<Props> = ({ t }) => {
       <div className="w-0 flex-1 p-3">
         <div className="flex items-center gap-3">
           <CheckCircleIcon className="flex h-8 items-start text-green-300" />
-          <p className="font-bold">削除しました</p>
+          <p className="font-bold">{toastTitle}</p>
         </div>
       </div>
       <div className="flex">

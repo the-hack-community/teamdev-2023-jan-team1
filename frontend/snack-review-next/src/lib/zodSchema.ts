@@ -1,5 +1,7 @@
 import { z } from "zod";
+import { ERROR_CATEGORY, ERROR_REQUIRED, ERROR_URL, ERROR_LENGTH } from "../constants/InputField";
 
+// 記事取得スキーマ
 export const articleSchema = z.object({
   id: z.number(),
   title: z.string(),
@@ -39,3 +41,14 @@ export const myProfileSchema = z.object({
 
 export type MyProfileType = z.infer<typeof myProfileSchema>;
 export type UserType = z.infer<typeof userSchema>;
+
+// 記事投稿フォームスキーマ
+const CATEGORY_EXCLUDE = new RegExp("^(?!.*default)");
+
+export const postArticleSchema = z.object({
+  title: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH),
+  content: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH),
+  category: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).regex(CATEGORY_EXCLUDE, ERROR_CATEGORY),
+  shopUrl: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).url(ERROR_URL),
+  shopInfo: z.string().max(300, ERROR_LENGTH).optional(),
+});

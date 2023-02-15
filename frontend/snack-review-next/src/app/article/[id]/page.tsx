@@ -18,7 +18,7 @@ type Props = {
 const ArticleDetail = async ({ params }: Props) => {
   const article = await getArticle(params.id);
 
-  return <ArticleDetailInfo {...article} />;
+  return <ArticleDetailInfo article={article} />;
 };
 
 export default ArticleDetail;
