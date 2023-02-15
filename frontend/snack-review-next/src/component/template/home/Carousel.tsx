@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { ArticlesType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { CardInfo } from "@/component/atoms/card/CardInfo";
+import { articlePath } from "@/constants/routes";
 
 type Props = {
   popularArticles: ArticlesType["popularArticles"];
@@ -12,10 +14,10 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
     <div className="carousel-center carousel h-72 max-w-xl space-x-6">
       <div className="pl-10" />
       {popularArticles.map((article) => {
-        const { title, imageUrl } = article;
+        const { id, title, imageUrl } = article;
 
         return (
-          <div className="carousel-item">
+          <Link href={articlePath(id.toString())} key={article.id} className="carousel-item">
             <div className="relative">
               <Image
                 priority
@@ -30,7 +32,7 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
                 <CardInfo {...article} />
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
       <div className="pr-10" />

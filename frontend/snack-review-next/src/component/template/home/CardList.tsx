@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 import type { ArticlesArrayType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { CardInfo } from "@/component/atoms/card/CardInfo";
+import { articlePath } from "@/constants/routes";
 
 type Props = {
   listTitle: string;
@@ -17,7 +21,7 @@ export const CardList: FC<Props> = ({ listTitle, articles }) => {
           const { id, title, imageUrl } = article;
 
           return (
-            <div className="rounded-xl shadow-md">
+            <Link href={articlePath(id.toString())} key={id} className="rounded-xl shadow-md">
               <div key={id} className="flex max-w-full flex-auto">
                 <Image
                   src={imageUrl || "/no-image-card.png"}
@@ -30,7 +34,7 @@ export const CardList: FC<Props> = ({ listTitle, articles }) => {
                   <CardInfo {...article} />
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
