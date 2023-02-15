@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import type { ArticleStateType } from "@/constants/InputField";
 import type { ArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { CategoryTag } from "@/component/atoms/card/CategoryTag";
@@ -9,30 +10,19 @@ import { ConfirmModal } from "@/component/atoms/card/ConfirmModal";
 import { EditAndDeleteIcons } from "@/component/atoms/card/EditAndDeleteIcons";
 import { formatDate } from "@/lib/helpers";
 
-type Props = Pick<
-  ArticleType,
-  | "title"
-  | "categoryName"
-  | "userName"
-  | "shopsInformation"
-  | "content"
-  | "updatedAt"
-  | "allowEditFlag"
-  | "url"
-  | "categoryColor"
-  | "imageUrl"
->;
+type Props = {
+  article: ArticleType;
+};
 
-export const ArticleDetailInfo: FC<Props> = ({
-  title,
-  categoryName,
-  userName,
-  shopsInformation,
-  content,
-  updatedAt,
-  allowEditFlag,
-  imageUrl,
-}) => {
+export const ArticleDetailInfo: FC<Props> = ({ article }) => {
+  const { title, content, categoryName, userName, imageUrl, shopsInformation, allowEditFlag, updatedAt } = article;
+  const articleState = {
+    title,
+    content,
+    category: categoryName,
+    shopInfo: shopsInformation,
+    shopUrl: "",
+  } satisfies ArticleStateType;
   // FIXME: isLoggedInはグローバルな値から取得ように変更
   const isLoggedIn = true;
 
@@ -67,7 +57,7 @@ export const ArticleDetailInfo: FC<Props> = ({
           <p className="mt-6 leading-8">{content}</p>
           <div className="h-20" />
         </div>
-        <ConfirmModal title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ConfirmModal articleState={articleState} modalType="delete" isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </div>
   );

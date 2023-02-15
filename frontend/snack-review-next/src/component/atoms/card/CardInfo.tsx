@@ -1,9 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { CategoryTag } from "./CategoryTag";
-import { ConfirmModal } from "./ConfirmModal";
-import { EditAndDeleteIcons } from "./EditAndDeleteIcons";
 import type { ArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { formatDate } from "@/lib/helpers";
@@ -32,9 +29,7 @@ export const CardInfo: FC<Props> = ({
 }) => {
   // FIXME: isLoggedInはグローバルな値から取得ように変更
   const isLoggedIn = true;
-
   const date = formatDate(updatedAt);
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -56,9 +51,7 @@ export const CardInfo: FC<Props> = ({
       </div>
       <div className="flex items-center gap-5">
         <p className="text-xs line-clamp-2">{content}</p>
-        {allowEditFlag && isLoggedIn && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} />}
       </div>
-      <ConfirmModal title={title} modalType="delete" isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };
