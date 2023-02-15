@@ -1,9 +1,9 @@
 "use client";
 
 import { FormLabel } from "./FormLabel";
-import type { ArticleStateKeyType, ArticleStateType } from "@/lib/formReducer";
 import type { ComponentProps, FC } from "react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import { ArticleStateKeyType, ArticleStateType } from "@/constants/InputField";
 
 type Props = ComponentProps<"textarea"> & {
   label?: string;

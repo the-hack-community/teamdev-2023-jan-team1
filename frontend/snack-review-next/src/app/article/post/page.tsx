@@ -41,11 +41,11 @@ const PostArticle = () => {
     <div className="flex-1 px-6">
       <h1 className="my-12 text-center text-lg font-bold text-blue-400">自分の感想を共有しよう!</h1>
       <form className="mb-10 grid grid-cols-1 gap-7" onSubmit={onSubmit}>
-        <InputField {...ARTICLE_TITLE} register={register} errors={errors} name="title" />
-        <TextAreaField {...ARTICLE_CONTENT} register={register} errors={errors} name="content" />
-        <SelectField {...CATEGORY} register={register} errors={errors} name="category" />
-        <InputField {...ARTICLE_SHOP_URL} register={register} errors={errors} name="shopUrl" />
-        <TextAreaField {...ARTICLE_SHOP_INFO} register={register} errors={errors} name="shopInfo" />
+        <InputField {...ARTICLE_TITLE} register={register} errors={errors} />
+        <TextAreaField {...ARTICLE_CONTENT} register={register} errors={errors} />
+        <SelectField {...CATEGORY} register={register} errors={errors} />
+        <InputField {...ARTICLE_SHOP_URL} register={register} errors={errors} />
+        <TextAreaField {...ARTICLE_SHOP_INFO} register={register} errors={errors} />
         <CommonButton isFullWidth isPrimary={false} type="submit">
           投稿内容を確認する
         </CommonButton>

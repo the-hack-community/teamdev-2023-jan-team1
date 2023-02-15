@@ -1,7 +1,6 @@
 "use client";
 
 import { FormLabel } from "./FormLabel";
-
 import type { ArticleStateKeyType, ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
