@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import type { ArticleStateType } from "@/constants/InputField";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { ConfirmModal } from "@/component/atoms/card/ConfirmModal";
 import { InputField } from "@/component/atoms/form/InputField";
@@ -16,18 +15,20 @@ import {
   ARTICLE_SHOP_URL,
   ARTICLE_TITLE,
   CATEGORY,
+  FormStateType,
+  ArticleInitialState,
 } from "@/constants/InputField";
 import { postArticleSchema } from "@/lib/zodSchema";
 
 const PostArticle = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [articleState, setArticleState] = useState<ArticleStateType>(initialState);
+  const [articleState, setArticleState] = useState<ArticleInitialState>(initialState);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ArticleStateType>({
+  } = useForm<FormStateType>({
     resolver: zodResolver(postArticleSchema),
     defaultValues: { category: "default" },
   });

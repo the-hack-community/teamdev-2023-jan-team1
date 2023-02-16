@@ -18,7 +18,7 @@ export const UserInfoField: FC<Props> = ({ value = "************", label, isEdit
     <div>
       <h3 className="text-sm font-bold">{label}</h3>
       {isEditing ? (
-        <UserInfoFieldInput value={value} setIsEditing={setIsEditing} />
+        <UserInfoFieldInput value={value} setIsEditing={setIsEditing} label={label} />
       ) : (
         <UserInfoFieldValue value={value} setIsEditing={setIsEditing} isEditable={isEditable} />
       )}
