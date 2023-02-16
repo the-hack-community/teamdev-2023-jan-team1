@@ -3,7 +3,7 @@ export const ERROR_REQUIRED = "必須項目です。";
 export const ERROR_URL = "無効なURLです。";
 export const ERROR_CATEGORY = "種類を選択してください。";
 export const ERROR_LENGTH = "300文字以内で入力してください。";
-export const ERROR_MIN_LENGTH = "6文字以内で入力してください。";
+export const ERROR_MIN_LENGTH = "6文字以上で入力してください。";
 export const ERROR_PASSWORD = "パスワードが一致しません。";
 export const ERROR_EMAIL = "有効なメールアドレスを入力してください。";
 
