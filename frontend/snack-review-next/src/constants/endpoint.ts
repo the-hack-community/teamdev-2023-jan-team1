@@ -1,3 +1,4 @@
+export const BASE_URL = "http://localhost:3001/api/v1";
 export const GET_ARTICLES = "http://localhost:4000/articles";
 export const GET_MY_PROFILE = "http://localhost:4000/my-profile";
 export const getArticlePath = (id: string) => {

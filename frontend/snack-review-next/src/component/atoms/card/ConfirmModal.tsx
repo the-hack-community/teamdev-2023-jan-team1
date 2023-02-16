@@ -6,11 +6,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { CommonButton } from "../button/CommonButton";
 import { CommonNotification } from "./CommonNotification";
 import { ModalInfoField } from "./ModalInfoField";
-import type { ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
+import { ArticleInitialState } from "@/constants/InputField";
 
 type Props = {
-  articleState: ArticleStateType;
+  articleState: ArticleInitialState;
   modalType: "post" | "delete";
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;

@@ -3,14 +3,14 @@
 import { FormLabel } from "./FormLabel";
 import type { ComponentProps, FC } from "react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
-import { ArticleStateKeyType, ArticleStateType } from "@/constants/InputField";
+import { FormNameType, FormStateType } from "@/constants/InputField";
 
 type Props = ComponentProps<"textarea"> & {
   label?: string;
   isRequired: boolean;
-  name: ArticleStateKeyType;
-  register: UseFormRegister<ArticleStateType>;
-  errors: FieldErrors<ArticleStateType>;
+  name: FormNameType;
+  register: UseFormRegister<FormStateType>;
+  errors: FieldErrors<FormStateType>;
 };
 
 export const TextAreaField: FC<Props> = ({ label, isRequired, register, name, errors, ...restProps }) => {

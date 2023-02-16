@@ -1,16 +1,16 @@
 "use client";
 
 import { FormLabel } from "./FormLabel";
-import type { ArticleStateKeyType, ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FormNameType, FormStateType } from "@/constants/InputField";
 
 type Props = ComponentProps<"select"> & {
   label?: string;
   isRequired: boolean;
-  name: ArticleStateKeyType;
-  register: UseFormRegister<ArticleStateType>;
-  errors: FieldErrors<ArticleStateType>;
+  name: FormNameType;
+  register: UseFormRegister<FormStateType>;
+  errors: FieldErrors<FormStateType>;
 };
 
 export const SelectField: FC<Props> = ({ label, isRequired, register, errors, name, ...restProps }) => {
