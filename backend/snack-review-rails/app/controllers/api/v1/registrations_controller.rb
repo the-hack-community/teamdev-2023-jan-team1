@@ -7,7 +7,7 @@ class Api::V1::RegistrationsController < DeviseTokenAuth::RegistrationsControlle
   end
 
   def account_update_params
-    params.require(:registration).permit(:name, :email, :password, :password_confirmation)
+    params.require(:registration).ermit(:name, :email, :password, :password_confirmation)
  end
 end
 
