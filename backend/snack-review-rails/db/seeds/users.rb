@@ -1,3 +1,5 @@
+# usersのテスト用ダミーファイル
+
 20.times do
   User.create!(
      name: Faker::JapaneseMedia::DragonBall.unique.character,
