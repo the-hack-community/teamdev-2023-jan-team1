@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - 33060:3306
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle install && bash"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
