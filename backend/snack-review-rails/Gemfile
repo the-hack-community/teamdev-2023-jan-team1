@@ -50,6 +50,7 @@ group :development do
   gem "annotate"
   gem "rubocop" 
   gem "rails-erd" 
+  gem 'faker'
 end
 
 gem "kaminari" 
