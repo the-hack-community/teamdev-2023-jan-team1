@@ -16,6 +16,6 @@
 #
 class CategorySerializer < ActiveModel::Serializer
   
-  type 'categories'
+  type 'category'
   attributes :id ,:category_name,:category_color
 end

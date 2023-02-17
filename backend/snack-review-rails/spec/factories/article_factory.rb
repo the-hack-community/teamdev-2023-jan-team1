@@ -27,9 +27,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 FactoryBot.define do
-  factory :article do
-    title { 'Test Aritcle' }
-    content { 'Test Content' }
-    category
-  end
+  # factory :article do
+  #   title { 'Test Aritcle' }
+  #   content { 'Test Content' }
+  #   category
+  # end
 end
