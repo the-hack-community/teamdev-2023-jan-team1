@@ -30,7 +30,7 @@ module SnackReviewRails
     config.middleware.use ActionDispatch::Flash
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins ENV.fetch("FRONT_URL")
         resource '*',
                  :headers => :any,
                  :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
