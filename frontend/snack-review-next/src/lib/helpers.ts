@@ -8,6 +8,6 @@ export const formatDate = (date: string) => {
 
 export const axiosClient = axios.create({
   // FIXME: CORSエラーを解消する
-  // withCredentials: true,
+  withCredentials: true,
   baseURL: BASE_URL,
 });

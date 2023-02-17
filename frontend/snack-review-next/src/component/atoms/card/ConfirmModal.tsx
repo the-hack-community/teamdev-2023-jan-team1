@@ -8,6 +8,7 @@ import { CommonNotification } from "./CommonNotification";
 import { ModalInfoField } from "./ModalInfoField";
 import type { ComponentProps, FC } from "react";
 import { ArticleInitialState } from "@/constants/InputField";
+import { axiosClient } from "@/lib/helpers";
 
 type Props = {
   articleState: ArticleInitialState;
@@ -29,6 +30,7 @@ export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIs
     e.preventDefault();
     if (modalType === "post") {
       // TODO: 送信処理
+      axiosClient.post("/articles", articleState);
       console.info(articleState);
       appearToast("投稿しました");
     } else {
