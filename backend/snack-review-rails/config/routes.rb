@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       }
       resources :articles, except: [:new, :edit]
       resources :categories, only: [:index]
+      resources :my_profiles, only: [:index]
     end
   end
 end
