@@ -14,7 +14,7 @@ end
   Article.create!(
     title: Faker::Lorem.sentence,
     content: Faker::Lorem.paragraphs,
-    category_id: Faker::Number.between(from: 1, to: 3),
+    category_id: Faker::Number.between(from: 1, to: 9),
     user_id: Faker::Number.between(from: 1, to: 20),
     shops_information:Faker::Lorem.sentences,
     url: Faker::Internet.url,
