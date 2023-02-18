@@ -12,11 +12,11 @@ end
 # articlesのテスト用ダミーファイル
 9.times do 
   Article.create!(
-    title: Faker::Books::CultureSeries.unique.book,
-    content: Faker::JapaneseMedia::OnePiece.unique.quote,
-    category_id: Faker::Number.between(from: 1, to: 9),
+    title: Faker::Lorem.sentence,
+    content: Faker::Lorem.paragraphs,
+    category_id: Faker::Number.between(from: 1, to: 3),
     user_id: Faker::Number.between(from: 1, to: 20),
-    shops_information:Faker::Restaurant.review,
+    shops_information:Faker::Lorem.sentences,
     url: Faker::Internet.url,
     image_url: Faker::Avatar.image,
     impressions_count:Faker::Number.between(from: 1, to: 10)
