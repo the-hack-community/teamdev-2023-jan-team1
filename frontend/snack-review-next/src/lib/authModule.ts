@@ -4,10 +4,23 @@ import { UserFormNameType } from "@/constants/InputField";
 import { axiosClient } from "@/lib/helpers";
 
 const setCookies = (res: AxiosResponse) => {
-  // FIXME: 有効期限をヘッダーの値から設定
-  Cookies.set("client", res.headers.client, { expires: 7 });
-  Cookies.set("access-token", res.headers["access-token"], { expires: 7 });
-  Cookies.set("uid", res.headers.uid, { expires: 7 });
+  const timestamp = res.headers.expiry;
+  const expires = Math.floor((timestamp - Date.now() / 1000) / 86400);
+
+  const AuthenticationHeaders = {
+    "access-token": res.headers["access-token"],
+    "token-type": res.headers["token-type"],
+    "client": res.headers.client,
+    "expiry": res.headers.expiry,
+    "uid": res.headers.uid
+  };
+
+  const token = btoa(JSON.stringify(AuthenticationHeaders));
+  const bearerToken = `Bearer ${token}`;
+
+  Cookies.set("client", res.headers.client, { expires });
+  Cookies.set("access-token", bearerToken, { expires });
+  Cookies.set("uid", res.headers.uid, { expires });
 };
 
 const clearCookies = () => {
