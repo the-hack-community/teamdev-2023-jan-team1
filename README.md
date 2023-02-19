@@ -58,40 +58,44 @@ rails s
 
 ## ポート
 フロントエンドports:3000
+
 バックエンドports:3001
 
 
 ## 環境
-ruby: "3.1.2"
+```
+フロントエンド
+Next.js：　"13.1.1"
+Tailwindcss：　"^3.2.4"
+typescript:　"4.9.4"
+zod：　"^3.20.2"
 
-rails:　"7.0.4"
+バックエンド(APIとして)
+Ruby: "3.1.2"
+Ruby on Rails： "7.0.4.2"
 
-react: "18.2.0"
+データベース言語
+MySQL2： "0.5.5"
+```
 
-next: "13.1.1"
-
-mysql2: "~> 0.5"
-
-
-## バックエンドで使用した技術（Gem）
-- devise 認証まわりはおまかせ
-- rack-cors cors設定
-- rspec-rails RSpec
-- pry-rails 最高のデバッグをあなたに
-- factory_bot_rails テストデータはお手の物
-- rubocop リンター
-- annotate モデルにDB定義をコメントしてくれる
-- rails-erd Railsのモデルを見てER図を作ってくれる
-- ruby-graphviz グラフの生成
-- config 環境ごとの設定はここ
-- dotenv-rails .envを使う方はこちら
-- jbuilder JSONを簡単に生成
-- active_model_serializers SON形式のデータの整える
-- discard 論理削除
+## バックエンドで使用した技術
+- devise #認証まわりはおまかせ
+- rack-cors #cors設定
+- rspec-rails #RSpecテストはRailsの醍醐味
+- pry-rails #最高のデバッグをあなたに
+- factory_bot_rails #テストデータはお手の物
+- rubocop #Railsには必須のリンター
+- annotate #モデルにDB定義をコメントしてくれる
+- rails-erd #Railsのモデルを見てER図を作ってくれる
+- ruby-graphviz #グラフの生成
+- config #環境ごとの設定はここへ
+- dotenv-rails #.envを使う方はこちら
+- jbuilder #JSONを簡単に生成
+- active_model_serializers #SON形式のデータの整える
+- discard #論理削除するならこれ
+- faker #豊富なダミーデータ
   
 ## フロントエンドで使用した技術
-※何かあれば追加します
+- ESlint #コードをきれいに保つ
+- zod #バリデーションライブラリ
 
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
