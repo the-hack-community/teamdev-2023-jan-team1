@@ -84,3 +84,13 @@ export const loginSchema = z.object({
 });
 
 export type postArticleType = z.infer<typeof postArticleSchema>;
+
+// カテゴリースキーマ
+
+const categorySchema = z.object({
+  id: z.number(),
+  categoryName: z.string(),
+  categoryColor: z.string(),
+});
+
+export type CategoryType = { categories: z.infer<typeof categorySchema>[] };
