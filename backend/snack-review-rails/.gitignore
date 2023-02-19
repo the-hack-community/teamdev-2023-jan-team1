@@ -32,3 +32,6 @@
 #environment
 
 .env
+Dockerfile
+docker-compose.yml
+entrypoint.sh

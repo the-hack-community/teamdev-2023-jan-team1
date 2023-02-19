@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       }
       resources :articles, except: [:new, :edit]
       resources :categories, only: [:index]
+      get 'my-profile',to: 'my_profiles#show',only: [:index]
     end
   end
 end
