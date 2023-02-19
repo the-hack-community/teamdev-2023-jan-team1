@@ -23,8 +23,7 @@ export const LoginComponent = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     // TODO: ユーザー情報をグローバルステートに入れる
-    const res = await login(data);
-    console.info(res);
+    await login(data);
     router.push("/");
   });
 

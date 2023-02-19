@@ -1,13 +1,16 @@
 "use client";
 
-import type { ComponentProps, FC } from "react";
+import { useRouter } from "next/navigation";
+import { FC } from "react";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
 import { logout } from "@/lib/authModule";
 
 export const MyProfileHeader: FC = () => {
-  const handleClick: ComponentProps<"button">["onClick"] = (e) => {
-    e.preventDefault();
+  const router = useRouter();
+
+  const handleClick = () => {
     logout();
+    router.push("/");
   };
 
   return (
