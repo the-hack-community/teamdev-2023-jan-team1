@@ -1,19 +1,22 @@
 "use client";
 
 import { FormLabel } from "./FormLabel";
-import type { ArticleStateKeyType, ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FormNameType, FormStateType } from "@/constants/InputField";
+import { useCategories } from "@/lib/useCategory";
 
 type Props = ComponentProps<"select"> & {
   label?: string;
   isRequired: boolean;
-  name: ArticleStateKeyType;
-  register: UseFormRegister<ArticleStateType>;
-  errors: FieldErrors<ArticleStateType>;
+  name: FormNameType;
+  register: UseFormRegister<FormStateType>;
+  errors: FieldErrors<FormStateType>;
 };
 
 export const SelectField: FC<Props> = ({ label, isRequired, register, errors, name, ...restProps }) => {
+  const { categories } = useCategories();
+
   return (
     <div className="w-full">
       {label && (
@@ -29,11 +32,11 @@ export const SelectField: FC<Props> = ({ label, isRequired, register, errors, na
         <option disabled value="default">
           お菓子の種類を選択
         </option>
-        <option value="焼き菓子">焼き菓子</option>
-        <option value="ケーキ">ケーキ</option>
-        <option value="チョコ">チョコ</option>
-        <option value="和菓子">和菓子</option>
-        <option value="その他">その他</option>
+        {categories?.map((category) => (
+          <option key={category.id} value={category.categoryName}>
+            {category.categoryName}
+          </option>
+        ))}
       </select>
       {errors && <p className="mt-1 text-red-400">{errors[name]?.message}</p>}
     </div>

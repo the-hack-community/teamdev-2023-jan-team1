@@ -6,11 +6,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { CommonButton } from "../button/CommonButton";
 import { CommonNotification } from "./CommonNotification";
 import { ModalInfoField } from "./ModalInfoField";
-import type { ArticleStateType } from "@/constants/InputField";
 import type { ComponentProps, FC } from "react";
+import { ArticleInitialState } from "@/constants/InputField";
+import { axiosClient } from "@/lib/helpers";
+import { useCategories } from "@/lib/useCategory";
 
 type Props = {
-  articleState: ArticleStateType;
+  articleState: ArticleInitialState;
   modalType: "post" | "delete";
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
@@ -24,12 +26,13 @@ const appearToast = (toastTile: "投稿しました" | "削除しました") => 
 };
 
 export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen }) => {
+  const { categories } = useCategories();
   const { title, content, category, shopUrl, shopInfo } = articleState;
   const handleClick: ComponentProps<"button">["onClick"] = (e) => {
     e.preventDefault();
     if (modalType === "post") {
-      // TODO: 送信処理
-      console.info(articleState);
+      const findCategory = categories?.find((data) => data.categoryName === articleState.category);
+      axiosClient.post("/articles", { ...articleState, categoryId: Number(findCategory?.id) });
       appearToast("投稿しました");
     } else {
       appearToast("削除しました");

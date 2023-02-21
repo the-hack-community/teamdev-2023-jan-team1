@@ -1,5 +1,13 @@
 import { z } from "zod";
-import { ERROR_CATEGORY, ERROR_REQUIRED, ERROR_URL, ERROR_LENGTH } from "../constants/InputField";
+import {
+  ERROR_CATEGORY,
+  ERROR_REQUIRED,
+  ERROR_URL,
+  ERROR_LENGTH,
+  ERROR_MIN_LENGTH,
+  ERROR_PASSWORD,
+  ERROR_EMAIL,
+} from "@/constants/InputField";
 
 // 記事取得スキーマ
 export const articleSchema = z.object({
@@ -42,7 +50,7 @@ export const myProfileSchema = z.object({
 export type MyProfileType = z.infer<typeof myProfileSchema>;
 export type UserType = z.infer<typeof userSchema>;
 
-// 記事投稿フォームスキーマ
+// フォームスキーマ
 const CATEGORY_EXCLUDE = new RegExp("^(?!.*default)");
 
 export const postArticleSchema = z.object({
@@ -52,3 +60,37 @@ export const postArticleSchema = z.object({
   shopUrl: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).url(ERROR_URL),
   shopInfo: z.string().max(300, ERROR_LENGTH).optional(),
 });
+
+export const signupSchema = z
+  .object({
+    name: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH),
+    email: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).email(ERROR_EMAIL),
+    password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH),
+    confirmPassword: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH),
+  })
+  .superRefine(({ password, confirmPassword }, ctx) => {
+    if (password !== confirmPassword) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["confirmPassword"],
+        message: ERROR_PASSWORD,
+      });
+    }
+  });
+
+export const loginSchema = z.object({
+  email: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).email(ERROR_EMAIL),
+  password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH),
+});
+
+export type postArticleType = z.infer<typeof postArticleSchema>;
+
+// カテゴリースキーマ
+
+const categorySchema = z.object({
+  id: z.number(),
+  categoryName: z.string(),
+  categoryColor: z.string(),
+});
+
+export type CategoryType = { categories: z.infer<typeof categorySchema>[] };

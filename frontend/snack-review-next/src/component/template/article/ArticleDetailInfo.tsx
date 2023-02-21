@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import type { ArticleStateType } from "@/constants/InputField";
-import type { ArticleType } from "@/lib/zodSchema";
+import type { ArticleType, postArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { CategoryTag } from "@/component/atoms/card/CategoryTag";
 import { ConfirmModal } from "@/component/atoms/card/ConfirmModal";
@@ -22,7 +21,7 @@ export const ArticleDetailInfo: FC<Props> = ({ article }) => {
     category: categoryName,
     shopInfo: shopsInformation,
     shopUrl: "",
-  } satisfies ArticleStateType;
+  } satisfies postArticleType;
   // FIXME: isLoggedInはグローバルな値から取得ように変更
   const isLoggedIn = true;
 
