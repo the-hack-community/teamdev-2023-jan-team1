@@ -1,5 +1,6 @@
 json.user do
   json.name @user.name
+  json.email @user.email
 end
 json.set! :articles do
   json.array! @articles do | article |
