@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ArticlesType } from "@/lib/zodSchema";
 import type { FC } from "react";
@@ -19,8 +18,7 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
         return (
           <Link href={articlePath(id.toString())} key={article.id} className="carousel-item">
             <div className="relative">
-              <Image
-                priority
+              <img
                 src={imageUrl || "/no-image-carousel.png"}
                 width={320}
                 height={208}

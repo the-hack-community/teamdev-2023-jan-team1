@@ -32,7 +32,10 @@ export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIs
     e.preventDefault();
     if (modalType === "post") {
       const findCategory = categories?.find((data) => data.categoryName === articleState.category);
-      axiosClient.post("/articles", { ...articleState, categoryId: Number(findCategory?.id) });
+      const body = { ...articleState, url: shopUrl, categoryId: Number(findCategory?.id) };
+      console.log(body);
+
+      axiosClient.post("/articles", body);
       appearToast("投稿しました");
     } else {
       appearToast("削除しました");

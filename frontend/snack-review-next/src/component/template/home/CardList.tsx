@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { ArticlesArrayType } from "@/lib/zodSchema";
 import type { FC } from "react";
@@ -23,7 +22,7 @@ export const CardList: FC<Props> = ({ listTitle, articles }) => {
           return (
             <Link href={articlePath(id.toString())} key={id} className="rounded-xl shadow-md">
               <div key={id} className="flex max-w-full flex-auto">
-                <Image
+                <img
                   src={imageUrl || "/no-image-card.png"}
                   width={112}
                   height={112}

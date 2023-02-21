@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { ArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
 import { CardInfo } from "@/component/atoms/card/CardInfo";
@@ -13,7 +12,7 @@ export const CardSmall: FC<Props> = ({ article }) => {
   return (
     <button type="button" className="rounded-xl shadow-md">
       <div key={id} className="flex max-w-full flex-auto">
-        <Image
+        <img
           src={imageUrl || "/no-image-card.png"}
           width={112}
           height={112}
