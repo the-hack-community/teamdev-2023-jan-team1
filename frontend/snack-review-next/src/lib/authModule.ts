@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 import { UserFormNameType } from "@/constants/InputField";
@@ -41,8 +42,16 @@ export const logout = async () => {
 };
 
 export const getUser = async (input: string) => {
-  const res = await axiosClient.get(input);
-  return res.data;
+  const res = await fetch(input, {
+    method: "GET",
+    headers: {
+      uid: Cookies.get("uid")!,
+      client: Cookies.get("client")!,
+      access_token: Cookies.get("access-token")!,
+    },
+  });
+  const data = await res.json();
+  return data;
 };
 
 export const signup = async (formData: Record<UserFormNameType, string>) => {

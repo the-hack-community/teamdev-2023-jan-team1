@@ -11,6 +11,7 @@ export const MyProfileHeader: FC = () => {
   const handleClick = () => {
     logout();
     router.push("/");
+    router.refresh();
   };
 
   return (

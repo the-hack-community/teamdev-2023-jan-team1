@@ -11,15 +11,13 @@ const mPlus = M_PLUS_Rounded_1c({
 });
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
-  const isLoggedIn = true;
-
   return (
     <html lang="ja" data-theme="light">
       <head />
       <body className={`${mPlus.className} text-gray-700`}>
         <main>{children}</main>
         <div className="h-20" />
-        <Footer isLoggedIn={isLoggedIn} userName="シェアがしユーザーで名前の長いひと" />
+        <Footer />
       </body>
     </html>
   );
