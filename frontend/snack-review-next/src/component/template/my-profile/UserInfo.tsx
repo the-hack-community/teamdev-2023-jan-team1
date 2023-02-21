@@ -1,14 +1,16 @@
 import { UserInfoField } from "./UserInfoField";
-import { getUserData } from "@/lib/getData";
+import type { UserType } from "@/lib/zodSchema";
+import type { FC } from "react";
 
-export const UserInfo = async () => {
-  const { user } = await getUserData();
-  const { email, name } = user;
+type Props = {
+  user: UserType;
+};
 
+export const UserInfo: FC<Props> = ({ user }) => {
   return (
     <div className="grid grid-cols-1 gap-6">
-      <UserInfoField label="メールアドレス" value={email} isEditable={false} />
-      <UserInfoField label="ユーザー名" value={name} />
+      <UserInfoField label="メールアドレス" value={user.email} isEditable={false} />
+      <UserInfoField label="ユーザー名" value={user.name} />
       <UserInfoField label="パスワード" />
     </div>
   );

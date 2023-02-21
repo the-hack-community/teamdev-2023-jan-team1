@@ -22,9 +22,9 @@ export const LoginComponent = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    // TODO: ユーザー情報をグローバルステートに入れる
     await login(data);
     router.push("/");
+    router.refresh();
   });
 
   return (
