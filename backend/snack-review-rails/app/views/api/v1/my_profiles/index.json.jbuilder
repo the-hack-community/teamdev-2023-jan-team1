@@ -9,6 +9,7 @@ json.set! :articles do
     json.categoryName article.category.category_name
     json.categoryColor article.category.category_color
     json.shopsInformation article.shops_information
+    json.content article.content
     json.url article.url
     json.imageUrl article.image_url
     json.userName article.user.name
