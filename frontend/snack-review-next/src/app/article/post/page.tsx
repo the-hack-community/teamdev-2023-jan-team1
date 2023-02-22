@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAtom } from "jotai";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CommonButton } from "@/component/atoms/button/CommonButton";
@@ -18,9 +19,14 @@ import {
   FormStateType,
   ArticleInitialState,
 } from "@/constants/InputField";
+import { articleIdAtom, isEditAtom } from "@/lib/atom";
+import { useArticle } from "@/lib/useArticle";
 import { postArticleSchema } from "@/lib/zodSchema";
 
 const PostArticle = () => {
+  const [isEdit] = useAtom(isEditAtom);
+  const [articleId] = useAtom(articleIdAtom);
+  const { data: articleData } = useArticle(articleId.toString());
   const [isOpen, setIsOpen] = useState(false);
   const [articleState, setArticleState] = useState<ArticleInitialState>(initialState);
 
@@ -30,7 +36,16 @@ const PostArticle = () => {
     formState: { errors },
   } = useForm<FormStateType>({
     resolver: zodResolver(postArticleSchema),
-    defaultValues: { category: "default" },
+    defaultValues:
+      articleData && isEdit
+        ? {
+            title: articleData.title,
+            content: articleData.content,
+            category: articleData.categoryName,
+            shopUrl: articleData.url,
+            shopInfo: articleData.shopsInformation,
+          }
+        : { category: "default" },
   });
 
   const onSubmit = handleSubmit((data) => {

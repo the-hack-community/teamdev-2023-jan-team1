@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import type { ArticleType, postArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
@@ -14,23 +15,21 @@ type Props = {
 };
 
 export const ArticleDetailInfo: FC<Props> = ({ article }) => {
-  const { title, content, categoryName, userName, imageUrl, shopsInformation, allowEditFlag, updatedAt } = article;
+  const { title, content, categoryName, userName, imageUrl, shopsInformation, allowEditFlag, updatedAt, id } = article;
   const articleState = {
     title,
     content,
     category: categoryName,
-    shopInfo: shopsInformation,
+    shopInfo: shopsInformation || "",
     shopUrl: "",
   } satisfies postArticleType;
-  // FIXME: isLoggedInはグローバルな値から取得ように変更
-  const isLoggedIn = true;
 
   const date = formatDate(updatedAt);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="relative">
-      <Image
+      <img
         src={imageUrl || "/no-image-carousel.png"}
         width={320}
         height={308}
@@ -49,14 +48,20 @@ export const ArticleDetailInfo: FC<Props> = ({ article }) => {
               </div>
             </div>
             <div className="flex space-x-6">
-              {allowEditFlag && isLoggedIn && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} />}
+              {allowEditFlag && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} id={id || 1} />}
             </div>
           </div>
           <p className="text-sm text-gray-400 line-clamp-1">{shopsInformation}</p>
           <p className="mt-6 leading-8">{content}</p>
           <div className="h-20" />
         </div>
-        <ConfirmModal articleState={articleState} modalType="delete" isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ConfirmModal
+          articleState={articleState}
+          modalType="delete"
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          id={id || 1}
+        />
       </div>
     </div>
   );

@@ -5,10 +5,12 @@ import { UserFormNameType } from "@/constants/InputField";
 import { axiosClient } from "@/lib/helpers";
 
 const setCookies = (res: AxiosResponse) => {
-  // FIXME: 有効期限をヘッダーの値から設定
-  Cookies.set("client", res.headers.client, { expires: 7 });
-  Cookies.set("access-token", res.headers["access-token"], { expires: 7 });
-  Cookies.set("uid", res.headers.uid, { expires: 7 });
+  const timestamp = res.headers.expiry;
+  const expires = Math.floor((timestamp - Date.now() / 1000) / 86400);
+
+  Cookies.set("client", res.headers.client, { expires });
+  Cookies.set("access-token", res.headers["access-token"], { expires });
+  Cookies.set("uid", res.headers.uid, { expires });
 };
 
 const clearCookies = () => {
@@ -28,9 +30,7 @@ export const login = async (formData: Omit<Record<UserFormNameType, string>, "na
 };
 
 export const logout = async () => {
-  // FIXME: axiosだと404not foundになる
-  // await axiosClient.delete("/auth/sign_out");
-  await fetch("http://localhost:3001/api/v1/auth/sign_out", {
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign_out`, {
     method: "DELETE",
     headers: {
       uid: Cookies.get("uid")!,
@@ -40,7 +40,6 @@ export const logout = async () => {
   });
   clearCookies();
 };
-
 export const getUser = async (input: string) => {
   const res = await fetch(input, {
     method: "GET",
@@ -63,4 +62,30 @@ export const signup = async (formData: Record<UserFormNameType, string>) => {
     clearCookies();
     console.error(error);
   }
+};
+
+export const getArticles = async (input: string) => {
+  const res = await fetch(input, {
+    method: "GET",
+    headers: {
+      uid: Cookies.get("uid")!,
+      client: Cookies.get("client")!,
+      access_token: Cookies.get("access-token")!,
+    },
+  });
+  const data = await res.json();
+  return data;
+};
+
+export const getArticle = async (input: string) => {
+  const res = await fetch(input, {
+    method: "GET",
+    headers: {
+      uid: Cookies.get("uid")!,
+      client: Cookies.get("client")!,
+      access_token: Cookies.get("access-token")!,
+    },
+  });
+  const data = await res.json();
+  return data;
 };

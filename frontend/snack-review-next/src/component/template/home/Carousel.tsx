@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import type { ArticlesType } from "@/lib/zodSchema";
 import type { FC } from "react";
@@ -16,7 +17,7 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
         const { id, title, imageUrl } = article;
 
         return (
-          <Link href={articlePath(id.toString())} key={article.id} className="carousel-item">
+          <Link href={articlePath(id ? id.toString() : "1")} key={article.id} className="carousel-item">
             <div className="relative">
               <img
                 src={imageUrl || "/no-image-carousel.png"}
@@ -26,7 +27,7 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
                 className="h-52 w-80 rounded-3xl object-cover"
               />
 
-              <div className="absolute top-32 mx-6 flex flex-col gap-1 rounded-3xl bg-white px-4 py-3 shadow-md">
+              <div className="absolute top-32 mx-6 flex w-[272px] flex-col gap-1 rounded-3xl bg-white px-4 py-3 shadow-md">
                 <CardInfo {...article} />
               </div>
             </div>

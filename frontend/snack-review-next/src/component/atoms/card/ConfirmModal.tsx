@@ -1,14 +1,19 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useAtom } from "jotai";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { CommonButton } from "../button/CommonButton";
 import { CommonNotification } from "./CommonNotification";
 import { ModalInfoField } from "./ModalInfoField";
 import type { ComponentProps, FC } from "react";
 import { ArticleInitialState } from "@/constants/InputField";
-import { axiosClient } from "@/lib/helpers";
+import { articleIdAtom, isEditAtom } from "@/lib/atom";
 import { useCategories } from "@/lib/useCategory";
 
 type Props = {
@@ -16,6 +21,7 @@ type Props = {
   modalType: "post" | "delete";
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
+  id?: number;
 };
 
 const appearToast = (toastTile: "投稿しました" | "削除しました") => {
@@ -25,20 +31,45 @@ const appearToast = (toastTile: "投稿しました" | "削除しました") => 
   });
 };
 
-export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen }) => {
+export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen, id }) => {
+  const router = useRouter();
   const { categories } = useCategories();
   const { title, content, category, shopUrl, shopInfo } = articleState;
-  const handleClick: ComponentProps<"button">["onClick"] = (e) => {
+  const [isEdit] = useAtom(isEditAtom);
+  const [articleId] = useAtom(articleIdAtom);
+  const handleClick: ComponentProps<"button">["onClick"] = async (e) => {
     e.preventDefault();
     if (modalType === "post") {
       const findCategory = categories?.find((data) => data.categoryName === articleState.category);
       const body = { ...articleState, url: shopUrl, categoryId: Number(findCategory?.id) };
-      console.log(body);
-
-      axiosClient.post("/articles", body);
+      const url = isEdit ? `${process.env.NEXT_PUBLIC_BASE_URL}/${articleId}` : process.env.NEXT_PUBLIC_BASE_URL;
+      const method = isEdit ? "PATCH" : "POST";
+      await fetch(url, {
+        method,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          uid: Cookies.get("uid")!,
+          client: Cookies.get("client")!,
+          access_token: Cookies.get("access-token")!,
+        },
+        body: JSON.stringify(body),
+      });
       appearToast("投稿しました");
+      router.push("/");
     } else {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          uid: Cookies.get("uid")!,
+          client: Cookies.get("client")!,
+          access_token: Cookies.get("access-token")!,
+        },
+      });
       appearToast("削除しました");
+      router.push("/");
     }
     setIsOpen(false);
   };

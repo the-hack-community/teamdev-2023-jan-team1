@@ -11,14 +11,14 @@ import {
 
 // 記事取得スキーマ
 export const articleSchema = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   title: z.string(),
   content: z.string(),
   categoryName: z.string(),
   categoryColor: z.string(),
-  shopsInformation: z.string(),
+  shopsInformation: z.string().optional(),
   url: z.string(),
-  imageUrl: z.string(),
+  imageUrl: z.string().optional(),
   userName: z.string(),
   allowEditFlag: z.boolean(),
   createdAt: z.string(),
@@ -38,6 +38,7 @@ export type ArticlesArrayType = z.infer<typeof articleArraySchema>;
 
 // プロフィールスキーマ
 const userSchema = z.object({
+  id: z.number().optional(),
   name: z.string(),
   email: z.string().email(),
 });
@@ -58,7 +59,7 @@ export const postArticleSchema = z.object({
   content: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH),
   category: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).regex(CATEGORY_EXCLUDE, ERROR_CATEGORY),
   shopUrl: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).url(ERROR_URL),
-  shopInfo: z.string().max(300, ERROR_LENGTH).optional(),
+  shopInfo: z.string().max(300, ERROR_LENGTH).nullable(),
 });
 
 export const signupSchema = z
@@ -79,8 +80,13 @@ export const signupSchema = z
   });
 
 export const loginSchema = z.object({
-  email: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).email(ERROR_EMAIL),
-  password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH),
+  email: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).email(ERROR_EMAIL).optional(),
+  password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH).optional(),
+});
+
+export const editUserSchema = z.object({
+  name: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).optional(),
+  password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH).optional(),
 });
 
 export type postArticleType = z.infer<typeof postArticleSchema>;
