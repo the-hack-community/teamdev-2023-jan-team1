@@ -1,5 +1,6 @@
 "use client";
 
+import { Toaster } from "react-hot-toast";
 import { Loader } from "@/component/atoms/Loader";
 import { CarouselIndicator } from "@/component/atoms/card/CarouselIndicator";
 import { Logo } from "@/component/atoms/logo/Logo";
@@ -25,6 +26,7 @@ const Home = () => {
       <div className="px-4">
         <CardList listTitle="Shop List" articles={data.newArticles} />
       </div>
+      <Toaster />
     </div>
   );
 };

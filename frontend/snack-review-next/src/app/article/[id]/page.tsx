@@ -25,7 +25,7 @@ const ArticleDetail = ({ params }: Props) => {
 
   if (!data) return <Loader />;
 
-  return <ArticleDetailInfo article={data} />;
+  return <ArticleDetailInfo article={{ ...data, id: Number(params.id) }} />;
 };
 
 export default ArticleDetail;

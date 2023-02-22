@@ -5,6 +5,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { CommonButton } from "../button/CommonButton";
 import { CommonNotification } from "./CommonNotification";
@@ -18,6 +19,7 @@ type Props = {
   modalType: "post" | "delete";
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
+  id: number;
 };
 
 const appearToast = (toastTile: "投稿しました" | "削除しました") => {
@@ -27,9 +29,10 @@ const appearToast = (toastTile: "投稿しました" | "削除しました") => 
   });
 };
 
-export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen }) => {
+export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen, id }) => {
   const { categories } = useCategories();
   const { title, content, category, shopUrl, shopInfo } = articleState;
+  const router = useRouter();
   const handleClick: ComponentProps<"button">["onClick"] = async (e) => {
     e.preventDefault();
     if (modalType === "post") {
@@ -47,8 +50,20 @@ export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIs
         body: JSON.stringify(body),
       });
       appearToast("投稿しました");
+      router.push("/");
     } else {
+      await fetch(`http://localhost:3001/api/v1/articles/${id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          uid: Cookies.get("uid")!,
+          client: Cookies.get("client")!,
+          access_token: Cookies.get("access-token")!,
+        },
+      });
       appearToast("削除しました");
+      router.push("/");
     }
     setIsOpen(false);
   };

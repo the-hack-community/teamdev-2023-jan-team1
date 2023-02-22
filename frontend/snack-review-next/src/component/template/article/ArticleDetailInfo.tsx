@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const ArticleDetailInfo: FC<Props> = ({ article }) => {
-  const { title, content, categoryName, userName, imageUrl, shopsInformation, allowEditFlag, updatedAt } = article;
+  const { title, content, categoryName, userName, imageUrl, shopsInformation, allowEditFlag, updatedAt, id } = article;
   const articleState = {
     title,
     content,
@@ -55,7 +55,13 @@ export const ArticleDetailInfo: FC<Props> = ({ article }) => {
           <p className="mt-6 leading-8">{content}</p>
           <div className="h-20" />
         </div>
-        <ConfirmModal articleState={articleState} modalType="delete" isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ConfirmModal
+          articleState={articleState}
+          modalType="delete"
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          id={id || 1}
+        />
       </div>
     </div>
   );
