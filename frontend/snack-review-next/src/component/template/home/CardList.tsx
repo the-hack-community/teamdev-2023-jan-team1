@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import Link from "next/link";
@@ -29,7 +31,7 @@ export const CardList: FC<Props> = ({ listTitle, articles }) => {
                   alt={title}
                   className="h-28 w-28 shrink-0 rounded-l-xl object-cover"
                 />
-                <div className="flex flex-col gap-2 px-2">
+                <div className="flex grow flex-col gap-2 px-2">
                   <CardInfo {...article} />
                 </div>
               </div>

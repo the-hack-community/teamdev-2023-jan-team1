@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import type { ArticlesType } from "@/lib/zodSchema";
 import type { FC } from "react";
@@ -26,7 +27,7 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
                 className="h-52 w-80 rounded-3xl object-cover"
               />
 
-              <div className="absolute top-32 mx-6 flex flex-col gap-1 rounded-3xl bg-white px-4 py-3 shadow-md">
+              <div className="absolute top-32 mx-6 flex w-[272px] flex-col gap-1 rounded-3xl bg-white px-4 py-3 shadow-md">
                 <CardInfo {...article} />
               </div>
             </div>
