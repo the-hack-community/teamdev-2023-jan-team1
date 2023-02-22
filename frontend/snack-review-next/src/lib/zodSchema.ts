@@ -11,14 +11,14 @@ import {
 
 // 記事取得スキーマ
 export const articleSchema = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   title: z.string(),
   content: z.string(),
   categoryName: z.string(),
   categoryColor: z.string(),
   shopsInformation: z.string().nullable(),
-  url: z.string().nullable(),
-  imageUrl: z.string().nullable(),
+  url: z.string(),
+  imageUrl: z.string().optional(),
   userName: z.string(),
   allowEditFlag: z.boolean(),
   createdAt: z.string(),

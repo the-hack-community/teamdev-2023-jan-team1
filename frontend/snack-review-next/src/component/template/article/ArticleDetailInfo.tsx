@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import type { ArticleType, postArticleType } from "@/lib/zodSchema";
 import type { FC } from "react";
@@ -19,18 +20,16 @@ export const ArticleDetailInfo: FC<Props> = ({ article }) => {
     title,
     content,
     category: categoryName,
-    shopInfo: shopsInformation,
+    shopInfo: shopsInformation || "",
     shopUrl: "",
   } satisfies postArticleType;
-  // FIXME: isLoggedInはグローバルな値から取得ように変更
-  const isLoggedIn = true;
 
   const date = formatDate(updatedAt);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="relative">
-      <Image
+      <img
         src={imageUrl || "/no-image-carousel.png"}
         width={320}
         height={308}
@@ -49,7 +48,7 @@ export const ArticleDetailInfo: FC<Props> = ({ article }) => {
               </div>
             </div>
             <div className="flex space-x-6">
-              {allowEditFlag && isLoggedIn && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} />}
+              {allowEditFlag && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} />}
             </div>
           </div>
           <p className="text-sm text-gray-400 line-clamp-1">{shopsInformation}</p>
