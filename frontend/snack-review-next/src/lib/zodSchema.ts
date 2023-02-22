@@ -16,7 +16,7 @@ export const articleSchema = z.object({
   content: z.string(),
   categoryName: z.string(),
   categoryColor: z.string(),
-  shopsInformation: z.string().nullable(),
+  shopsInformation: z.string().optional(),
   url: z.string(),
   imageUrl: z.string().optional(),
   userName: z.string(),
@@ -58,7 +58,7 @@ export const postArticleSchema = z.object({
   content: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH),
   category: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).regex(CATEGORY_EXCLUDE, ERROR_CATEGORY),
   shopUrl: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).url(ERROR_URL),
-  shopInfo: z.string().max(300, ERROR_LENGTH).optional(),
+  shopInfo: z.string().max(300, ERROR_LENGTH).nullable(),
 });
 
 export const signupSchema = z

@@ -4,6 +4,7 @@
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useAtom } from "jotai";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
@@ -12,6 +13,7 @@ import { CommonNotification } from "./CommonNotification";
 import { ModalInfoField } from "./ModalInfoField";
 import type { ComponentProps, FC } from "react";
 import { ArticleInitialState } from "@/constants/InputField";
+import { articleIdAtom, isEditAtom } from "@/lib/atom";
 import { useCategories } from "@/lib/useCategory";
 
 type Props = {
@@ -19,7 +21,7 @@ type Props = {
   modalType: "post" | "delete";
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
-  id: number;
+  id?: number;
 };
 
 const appearToast = (toastTile: "投稿しました" | "削除しました") => {
@@ -30,16 +32,22 @@ const appearToast = (toastTile: "投稿しました" | "削除しました") => 
 };
 
 export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen, id }) => {
+  const router = useRouter();
   const { categories } = useCategories();
   const { title, content, category, shopUrl, shopInfo } = articleState;
-  const router = useRouter();
+  const [isEdit] = useAtom(isEditAtom);
+  const [articleId] = useAtom(articleIdAtom);
   const handleClick: ComponentProps<"button">["onClick"] = async (e) => {
     e.preventDefault();
     if (modalType === "post") {
       const findCategory = categories?.find((data) => data.categoryName === articleState.category);
       const body = { ...articleState, url: shopUrl, categoryId: Number(findCategory?.id) };
-      await fetch("http://localhost:3001/api/v1/articles", {
-        method: "POST",
+      const url = isEdit
+        ? `http://localhost:3001/api/v1/articles/${articleId}`
+        : "http://localhost:3001/api/v1/articles";
+      const method = isEdit ? "PATCH" : "POST";
+      await fetch(url, {
+        method,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

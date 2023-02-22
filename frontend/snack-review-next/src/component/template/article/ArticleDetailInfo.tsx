@@ -48,7 +48,7 @@ export const ArticleDetailInfo: FC<Props> = ({ article }) => {
               </div>
             </div>
             <div className="flex space-x-6">
-              {allowEditFlag && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} />}
+              {allowEditFlag && <EditAndDeleteIcons isOpen={isOpen} setIsOpen={setIsOpen} id={id || 1} />}
             </div>
           </div>
           <p className="text-sm text-gray-400 line-clamp-1">{shopsInformation}</p>
