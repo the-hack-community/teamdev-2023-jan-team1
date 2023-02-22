@@ -38,6 +38,7 @@ export type ArticlesArrayType = z.infer<typeof articleArraySchema>;
 
 // プロフィールスキーマ
 const userSchema = z.object({
+  id: z.number().optional(),
   name: z.string(),
   email: z.string().email(),
 });
@@ -79,8 +80,13 @@ export const signupSchema = z
   });
 
 export const loginSchema = z.object({
-  email: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).email(ERROR_EMAIL),
-  password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH),
+  email: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).email(ERROR_EMAIL).optional(),
+  password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH).optional(),
+});
+
+export const editUserSchema = z.object({
+  name: z.string().min(1, ERROR_REQUIRED).max(300, ERROR_LENGTH).optional(),
+  password: z.string().min(6, ERROR_MIN_LENGTH).max(300, ERROR_LENGTH).optional(),
 });
 
 export type postArticleType = z.infer<typeof postArticleSchema>;

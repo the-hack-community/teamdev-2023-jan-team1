@@ -42,9 +42,7 @@ export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIs
     if (modalType === "post") {
       const findCategory = categories?.find((data) => data.categoryName === articleState.category);
       const body = { ...articleState, url: shopUrl, categoryId: Number(findCategory?.id) };
-      const url = isEdit
-        ? `http://localhost:3001/api/v1/articles/${articleId}`
-        : "http://localhost:3001/api/v1/articles";
+      const url = isEdit ? `${process.env.NEXT_PUBLIC_BASE_URL}/${articleId}` : process.env.NEXT_PUBLIC_BASE_URL;
       const method = isEdit ? "PATCH" : "POST";
       await fetch(url, {
         method,
@@ -60,7 +58,7 @@ export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIs
       appearToast("投稿しました");
       router.push("/");
     } else {
-      await fetch(`http://localhost:3001/api/v1/articles/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
