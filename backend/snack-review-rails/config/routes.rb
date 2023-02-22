@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       controllers: {
         registrations: 'api/v1/registrations'
       }
+      resources :users, only: [:update]
       resources :articles, except: [:new, :edit]
       resources :categories, only: [:index]
       get 'my-profile',to: 'my_profiles#show',only: [:index]

@@ -2,20 +2,23 @@
 #
 # Table name: users
 #
-#  id                 :bigint           not null, primary key
-#  current_sign_in_at :datetime
-#  current_sign_in_ip :string(255)
-#  email              :string(255)
-#  encrypted_password :string(255)      default(""), not null
-#  last_sign_in_at    :datetime
-#  last_sign_in_ip    :string(255)
-#  name               :string(255)
-#  provider           :string(255)      default("email"), not null
-#  sign_in_count      :integer          default(0), not null
-#  tokens             :text(65535)
-#  uid                :string(255)      default(""), not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                     :bigint           not null, primary key
+#  allow_password_change  :boolean          default(TRUE)
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string(255)
+#  email                  :string(255)
+#  encrypted_password     :string(255)      default(""), not null
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string(255)
+#  name                   :string(255)
+#  provider               :string(255)      default("email"), not null
+#  reset_password_sent_at :date
+#  reset_password_token   :string(255)
+#  sign_in_count          :integer          default(0), not null
+#  tokens                 :text(65535)
+#  uid                    :string(255)      default(""), not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #
