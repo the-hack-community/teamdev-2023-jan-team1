@@ -64,3 +64,16 @@ export const signup = async (formData: Record<UserFormNameType, string>) => {
     console.error(error);
   }
 };
+
+export const getArticles = async (input: string) => {
+  const res = await fetch(input, {
+    method: "GET",
+    headers: {
+      uid: Cookies.get("uid")!,
+      client: Cookies.get("client")!,
+      access_token: Cookies.get("access-token")!,
+    },
+  });
+  const data = await res.json();
+  return data;
+};

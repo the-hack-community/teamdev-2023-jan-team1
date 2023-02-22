@@ -1,11 +1,16 @@
+"use client";
+
+import { Loader } from "@/component/atoms/Loader";
 import { CarouselIndicator } from "@/component/atoms/card/CarouselIndicator";
 import { Logo } from "@/component/atoms/logo/Logo";
 import { CardList } from "@/component/template/home/CardList";
 import { Carousel } from "@/component/template/home/Carousel";
-import { getArticles } from "@/lib/getData";
+import { useArticles } from "@/lib/useArticles";
 
-const Home = async () => {
-  const { newArticles, popularArticles } = await getArticles();
+const Home = () => {
+  const { data } = useArticles();
+
+  if (!data) return <Loader />;
 
   return (
     <div>
@@ -14,11 +19,11 @@ const Home = async () => {
       </div>
 
       <div className="mb-6">
-        <Carousel popularArticles={popularArticles} />
-        <CarouselIndicator popularArticles={popularArticles} />
+        <Carousel popularArticles={data.popularArticles} />
+        <CarouselIndicator popularArticles={data.popularArticles} />
       </div>
       <div className="px-4">
-        <CardList listTitle="Shop List" articles={newArticles} />
+        <CardList listTitle="Shop List" articles={data.newArticles} />
       </div>
     </div>
   );
