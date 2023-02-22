@@ -6,7 +6,6 @@ class Api::V1::UsersController <  ApplicationController
       return 
     end 
     user = User.find(current_api_v1_user.id)
-    binding.pry
     if params.key?(:password)
       result=user.update_with_password(user_params)
     else
