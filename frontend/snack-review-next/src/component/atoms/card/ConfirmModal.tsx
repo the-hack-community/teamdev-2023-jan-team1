@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import Cookies from "js-cookie";
 import toast, { Toaster } from "react-hot-toast";
 import { CommonButton } from "../button/CommonButton";
 import { CommonNotification } from "./CommonNotification";
 import { ModalInfoField } from "./ModalInfoField";
 import type { ComponentProps, FC } from "react";
 import { ArticleInitialState } from "@/constants/InputField";
-import { axiosClient } from "@/lib/helpers";
 import { useCategories } from "@/lib/useCategory";
 
 type Props = {
@@ -28,14 +30,22 @@ const appearToast = (toastTile: "投稿しました" | "削除しました") => 
 export const ConfirmModal: FC<Props> = ({ articleState, modalType, isOpen, setIsOpen }) => {
   const { categories } = useCategories();
   const { title, content, category, shopUrl, shopInfo } = articleState;
-  const handleClick: ComponentProps<"button">["onClick"] = (e) => {
+  const handleClick: ComponentProps<"button">["onClick"] = async (e) => {
     e.preventDefault();
     if (modalType === "post") {
       const findCategory = categories?.find((data) => data.categoryName === articleState.category);
       const body = { ...articleState, url: shopUrl, categoryId: Number(findCategory?.id) };
-      console.log(body);
-
-      axiosClient.post("/articles", body);
+      await fetch("http://localhost:3001/api/v1/articles", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          uid: Cookies.get("uid")!,
+          client: Cookies.get("client")!,
+          access_token: Cookies.get("access-token")!,
+        },
+        body: JSON.stringify(body),
+      });
       appearToast("投稿しました");
     } else {
       appearToast("削除しました");
