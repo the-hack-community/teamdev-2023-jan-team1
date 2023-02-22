@@ -6,3 +6,4 @@ package-lock.json
 public
 eslintrc.js
 next.config.js
+.env.local

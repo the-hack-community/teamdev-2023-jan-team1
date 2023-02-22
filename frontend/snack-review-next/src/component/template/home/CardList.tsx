@@ -22,7 +22,7 @@ export const CardList: FC<Props> = ({ listTitle, articles }) => {
           const { id, title, imageUrl } = article;
 
           return (
-            <Link href={articlePath(id.toString())} key={id} className="rounded-xl shadow-md">
+            <Link href={articlePath(id ? id.toString() : "1")} key={id} className="rounded-xl shadow-md">
               <div key={id} className="flex max-w-full flex-auto">
                 <img
                   src={imageUrl || "/no-image-card.png"}

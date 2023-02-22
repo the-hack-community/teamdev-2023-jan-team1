@@ -17,7 +17,7 @@ export const Carousel: FC<Props> = ({ popularArticles }) => {
         const { id, title, imageUrl } = article;
 
         return (
-          <Link href={articlePath(id.toString())} key={article.id} className="carousel-item">
+          <Link href={articlePath(id ? id.toString() : "1")} key={article.id} className="carousel-item">
             <div className="relative">
               <img
                 src={imageUrl || "/no-image-carousel.png"}
