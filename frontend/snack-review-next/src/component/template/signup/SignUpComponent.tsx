@@ -14,7 +14,7 @@ import {
   PASSWORD_FIELD_VERIFICATION,
   USER_NAME_FIELD,
 } from "@/constants/InputField";
-import { signup } from "@/lib/authModule";
+import { login, signup } from "@/lib/authModule";
 import { signupSchema } from "@/lib/zodSchema";
 
 export const SignUpComponent = () => {
@@ -28,10 +28,10 @@ export const SignUpComponent = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    // TODO: ユーザー情報をグローバルステートに入れる
-    const res = await signup(data);
-    console.info(res);
-    router.push("/");
+    await signup(data);
+    await login({ email: data.email, password: data.password });
+    router.replace("/");
+    router.refresh();
   });
 
   return (

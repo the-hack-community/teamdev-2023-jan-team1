@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
+import { axiosClient } from "./helpers";
 import { UserFormNameType } from "@/constants/InputField";
-import { axiosClient } from "@/lib/helpers";
 
-const setCookies = (res: AxiosResponse) => {
+const setCookies = (res: any) => {
   const timestamp = res.headers.expiry;
   const expires = Math.floor((timestamp - Date.now() / 1000) / 86400);
 
@@ -55,9 +54,14 @@ export const getUser = async (input: string) => {
 
 export const signup = async (formData: Record<UserFormNameType, string>) => {
   try {
-    await axiosClient.post("/auth", formData);
-    // FIXME: signupだけだとログインされた状態にならない
-    login({ email: formData.email, password: formData.password });
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
   } catch (error) {
     clearCookies();
     console.error(error);
